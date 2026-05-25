@@ -1,0 +1,139 @@
+# llm-memory-eval
+
+[![CI](https://github.com/okekeag/llm-memory-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/okekeag/llm-memory-eval/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+> Reproducible comparative evaluation of **Summarization-Based Memory** and
+> **Retrieval-Augmented Generation** for long-term conversational
+> performance in large language models, on three long-context benchmarks
+> (LongBench, LoCoMo, LongMemEval).
+
+This is the open-source companion package to the dissertation *A
+Comparative Evaluation of Summarization and Retrieval-Augmented Memory
+Strategies for Long-Term Conversational Performance in Large Language
+Models* (Okeke, 2026). It reproduces every quantitative result reported
+in the manuscript and produces the Chapter 4 and Chapter 5 `.docx` files
+that follow the University of the Cumberlands APA 7 quantitative
+dissertation template.
+
+## Highlights
+
+- **Backend-agnostic LLM interface.** One configuration file selects
+  Ollama (local pilot), Together AI (default cloud), AWS Bedrock,
+  Hugging Face Inference Endpoints, or any OpenAI-compatible endpoint.
+- **Manuscript-faithful pipeline.** Greedy decoding, `seed = 42`,
+  `intfloat/e5-large-v2` embeddings, FAISS inner-product retrieval,
+  recursive summarization, and the exact statistical tests pre-registered
+  in Chapter 3.
+- **Full statistical replication.** Paired-samples *t*-tests with
+  Holm-Bonferroni correction, Wilcoxon confirmatory tests, 2 × 3 ANOVA
+  on Strategy × Length, Shapiro-Wilk and Levene assumption diagnostics,
+  Bonferroni-corrected simple effects, Cohen's *d*, partial η², and 95
+  percent confidence intervals.
+- **Publication-quality outputs.** Seven matplotlib figures and two
+  `.docx` chapter files ready for submission.
+- **PhD-quality engineering.** Type hints, Pydantic configuration,
+  unit-tested metrics and statistics, GitHub Actions CI on Python 3.10
+  / 3.11 / 3.12, pre-commit hooks, multi-stage Dockerfile.
+
+## Quickstart
+
+```bash
+git clone https://github.com/okekeag/llm-memory-eval.git
+cd llm-memory-eval
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[cloud,local,viz]"
+
+cp .env.example .env             # then add TOGETHER_API_KEY=...
+export $(grep -v '^#' .env | xargs)
+
+scripts/reproduce_results.sh
+```
+
+The script runs the full pipeline: download benchmarks, prepare
+instances, evaluate both strategies, run the statistical analyses,
+render figures, and build the Chapter 4 / Chapter 5 `.docx` files.
+
+A local laptop pilot is supported with the same command and a different
+config:
+
+```bash
+ollama pull llama3.1:8b
+CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
+```
+
+## Documentation
+
+| Document                                | Purpose                                        |
+|-----------------------------------------|------------------------------------------------|
+| [Installation](docs/installation.md)    | Python / system / extras setup.                |
+| [Quickstart](docs/quickstart.md)        | Ten-command reproduction recipe.               |
+| **[Cloud setup](docs/cloud-setup.md)**  | Together AI account, key, cost, alternatives.  |
+| [Methodology](docs/methodology.md)      | Design, variables, benchmarks, statistics.     |
+| [Reproducibility](docs/reproducibility.md) | Deterministic controls, verification recipe. |
+| [API reference](docs/api-reference.md)  | Module-by-module summary.                      |
+| [GitHub setup](docs/github-setup.md)    | Publishing the repo + Zenodo DOI.              |
+
+## Project layout
+
+```
+.
+├── src/llm_memory_eval/        # Python package
+│   ├── cli.py                  # Typer CLI: download / prepare / run / analyze / figures / build-chapters / all
+│   ├── config.py               # Pydantic-validated YAML configuration
+│   ├── llm/                    # Backend abstraction + Ollama, Together, OpenAI-compat, Bedrock, HF
+│   ├── memory/                 # Summarization and RAG strategies
+│   ├── metrics/                # F1, EM, consistency, contradiction
+│   ├── data/                   # Benchmark download, prepare, stratify, length buckets
+│   ├── experiment/             # Runner + result schema with checkpointing
+│   ├── analysis/               # Descriptive, paired, ANOVA, assumptions, pipeline
+│   ├── reporting/              # Figures + Chapter 4/5 builders
+│   └── utils/                  # Logging, seeding, token counting
+├── tests/                      # Pytest suite (deterministic, no live API calls)
+├── configs/                    # default / local-pilot / cloud-production YAMLs
+├── scripts/                    # reproduce_results.sh, verify_environment.sh
+├── docker/Dockerfile           # Multi-stage image for cloud runs
+├── docs/                       # User and developer docs
+├── pyproject.toml              # PEP 621 metadata + tool config
+├── CITATION.cff                # Software citation (CFF v1.2.0)
+├── CHANGELOG.md                # Keep-a-Changelog format
+├── CONTRIBUTING.md             # Setup, tests, scientific-replication rule
+├── CODE_OF_CONDUCT.md          # Contributor Covenant 2.1 (linked)
+└── LICENSE                     # MIT
+```
+
+## Running the test suite
+
+```bash
+pytest --cov=llm_memory_eval --cov-report=term-missing
+```
+
+CI runs the same command across Python 3.10, 3.11, and 3.12 on every
+push and pull request.
+
+## Citing
+
+If this package contributes to your work please cite the dissertation
+and the software release. The machine-readable
+[CITATION.cff](CITATION.cff) file is converted automatically by
+GitHub's "Cite this repository" widget and by Zenodo's DOI registration.
+
+```text
+Okeke, A. (2026). llm-memory-eval: A reproducible evaluation harness
+for Summarization-Based Memory and Retrieval-Augmented Generation
+(Version 0.1.0) [Computer software]. https://doi.org/10.5281/zenodo.XXXXXXX
+```
+
+## Licence
+
+MIT - see [LICENSE](LICENSE). The benchmark datasets retrieved by
+`llm-memory-eval download-data` retain their upstream licences; this
+package only redistributes evaluation code, not data.
+
+## Acknowledgements
+
+This work builds on the LongBench, LoCoMo, and LongMemEval benchmarks
+and on the broader literature on memory-augmented language models cited
+in [docs/methodology.md](docs/methodology.md).

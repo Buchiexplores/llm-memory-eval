@@ -1,0 +1,52 @@
+# Local pilot configuration for Mac/Linux workstations.
+# Uses Ollama with Llama 3.1 8B - explicitly permitted by Chapter 3 for
+# local development before the cloud production run.
+
+project_name: "llm-memory-eval"
+
+backend:
+  name: "ollama"
+  model: "llama3.1:8b"
+  base_url: null
+  num_ctx: 4096
+  keep_alive: "30m"
+  request_timeout_seconds: 600
+  max_retries: 3
+
+decoding:
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 256
+  seed: 42
+
+memory:
+  context_budget_tokens: 3000
+  summarization:
+    max_chunks: 2
+    chunk_tokens: 1800
+    per_chunk_output_tokens: 300
+    summary_budget_tokens: 1000
+  rag:
+    embedding_model: "intfloat/e5-large-v2"
+    chunk_size_words: 220
+    chunk_overlap_words: 40
+    top_k: 8
+    embedding_device: "auto"
+
+metrics:
+  consistency_f1_threshold: 0.30
+  contradiction_f1_threshold: 0.30
+
+analysis:
+  alpha: 0.05
+  multiple_comparison_correction: "holm"
+
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  results: "results"
+  figures: "results/figures"
+  tables: "results/tables"
+  dissertation: "dissertation"
+
+log_level: "INFO"

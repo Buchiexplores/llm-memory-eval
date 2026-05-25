@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "llm-memory-eval: A Reproducible Evaluation Harness for Summarization-Based Memory and Retrieval-Augmented Generation"
+version: "0.1.0"
+date-released: 2026-05-21
+authors:
+  - family-names: Okeke
+    given-names: Abuchi
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+license: MIT
+doi: 10.5281/zenodo.XXXXXXX
+repository-code: "https://github.com/okekeag/llm-memory-eval"
+abstract: >-
+  llm-memory-eval is an open-source Python package that operationalizes a
+  comparative repeated-measures evaluation of Summarization-Based Memory
+  (recursive abstractive summarization performed by the base LLM) and
+  Retrieval-Augmented Generation (dense embeddings with FAISS over chunked
+  context) on three long-context benchmarks (LongBench, LoCoMo, and
+  LongMemEval). The harness provides config-driven backends (Ollama,
+  Together AI, AWS Bedrock, Hugging Face Inference Endpoints, and any
+  OpenAI-compatible endpoint), deterministic decoding controls, and a full
+  statistical pipeline (paired t-tests, Wilcoxon, two-way ANOVA with
+  Holm-Bonferroni and simple-effects post-hoc analysis) that reproduces the
+  results reported in the underlying dissertation.
+keywords:
+  - large-language-models
+  - retrieval-augmented-generation
+  - summarization
+  - long-context-evaluation
+  - longbench
+  - locomo
+  - longmemeval
+  - reproducible-research
