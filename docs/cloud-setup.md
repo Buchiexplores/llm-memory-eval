@@ -98,19 +98,25 @@ The `configs/cloud-production.yaml` config ships with:
 ```yaml
 backend:
   name: "together"
-  model: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+  model: "meta-llama/Llama-3.3-70B-Instruct-Turbo"
 ```
 
-Two production variants are available:
+| Together AI model id                          | Availability                                   |
+|-----------------------------------------------|------------------------------------------------|
+| `meta-llama/Llama-3.3-70B-Instruct-Turbo`     | Serverless (pay-per-token). Default config.    |
+| `meta-llama/Meta-Llama-3.1-70B-Instruct`      | Dedicated endpoint only (hourly billing).      |
+| `meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo`| Dedicated endpoint only (hourly billing).      |
 
-| Together AI model id                              | Notes                                  |
-|---------------------------------------------------|----------------------------------------|
-| `meta-llama/Meta-Llama-3.1-70B-Instruct`          | Reference 70B configuration.           |
-| `meta-llama/Llama-3.1-70B-Instruct-Turbo`         | Speed-optimised variant; cheaper, marginally different numerics. |
-
-Pin whichever you choose in the config so reviewers can reproduce
-exactly. Together AI lists current model identifiers and pricing at
-<https://www.together.ai/pricing>.
+> **Note on model availability.** Together AI's serverless (pay-per-token)
+> catalogue changes over time. As of this writing, Llama 3.1 70B Instruct is
+> served only via a *dedicated endpoint* (hourly billing), so the default
+> config uses the serverless `Llama-3.3-70B-Instruct-Turbo`. To run the exact
+> Llama 3.1 70B model, either provision a dedicated Together AI endpoint and
+> set its model id here, or use the AWS Bedrock backend
+> (`meta.llama3-1-70b-instruct-v1:0`), which still serves Llama 3.1 70B
+> on-demand. Verify current identifiers and pricing at
+> <https://www.together.ai/pricing>. Pin whichever model you choose so the
+> run is reproducible.
 
 ### 6. Run the reproduction
 

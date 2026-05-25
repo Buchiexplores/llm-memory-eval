@@ -27,7 +27,7 @@ class TestConfig:
 project_name: "demo"
 backend:
   name: "together"
-  model: "meta-llama/Meta-Llama-3.1-70B-Instruct"
+  model: "meta-llama/Llama-3.3-70B-Instruct-Turbo"
 decoding:
   max_tokens: 512
 """

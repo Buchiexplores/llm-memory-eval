@@ -51,8 +51,9 @@ LoCoMo (the broader of the two assignments wins). See
 
 ## Inference configuration
 
-- Base model: Meta Llama 3.1 70B Instruct (cloud production) or 8B
-  (laptop pilot).
+- Base model: a Meta Llama 70B Instruct chat model served on Together AI
+  (cloud production; `meta-llama/Llama-3.3-70B-Instruct-Turbo` by default)
+  or Llama 3.1 8B (laptop pilot via Ollama).
 - Decoding: `temperature = 0`, `top_p = 1.0`, `max_tokens = 512`,
   `seed = 42`.
 - Embeddings: `intfloat/e5-large-v2`.

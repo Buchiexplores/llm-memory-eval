@@ -2,7 +2,7 @@
 
 This guide reproduces the full experimental pipeline in under ten
 commands. The default flow assumes the reference cloud configuration
-(Together AI hosting Meta Llama 3.1 70B Instruct).
+(Together AI hosting Meta Llama 3.3 70B Instruct Turbo, serverless).
 
 ## 1. Install
 
