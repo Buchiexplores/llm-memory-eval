@@ -9,7 +9,7 @@ authors:
     given-names: Abuchi
     email: okekeag@gmail.com
     affiliation: "University of the Cumberlands, Williamsburg, Kentucky, USA"
-    orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: replace with author ORCID iD
+    orcid: "https://orcid.org/0000-0001-8684-1115"
 license: MIT
 doi: 10.5281/zenodo.XXXXXXX  # TODO: replace with the Zenodo DOI minted on first release
 repository-code: "https://github.com/Buchiexplores/llm-memory-eval"
@@ -48,7 +48,7 @@ preferred-citation:
     - family-names: Okeke
       given-names: Abuchi
       affiliation: "University of the Cumberlands, Williamsburg, Kentucky, USA"
-      orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: replace with author ORCID iD
+      orcid: "https://orcid.org/0000-0001-8684-1115"
   year: 2026
   month: 12
   institution:

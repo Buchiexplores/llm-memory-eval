@@ -9,7 +9,7 @@ tags:
   - reproducible research
 authors:
   - name: Abuchi Okeke
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0001-8684-1115
     affiliation: 1
 affiliations:
   - name: University of the Cumberlands, Williamsburg, Kentucky, USA
