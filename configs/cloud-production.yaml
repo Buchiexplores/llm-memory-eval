@@ -42,7 +42,7 @@ memory:
     chunk_size_words: 220
     chunk_overlap_words: 40
     top_k: 8
-    embedding_device: "auto"
+    embedding_device: "cpu"
 
 metrics:
   consistency_f1_threshold: 0.30
