@@ -1,6 +1,6 @@
 """Retrieval-Augmented Generation memory strategy.
 
-Implements the Chapter 3 design: chunked context is encoded with the
+Chunked context is encoded with the
 ``intfloat/e5-large-v2`` model, indexed with FAISS using inner-product
 similarity on L2-normalised embeddings (equivalent to cosine similarity),
 and the top-k passages are concatenated into the answer prompt up to the

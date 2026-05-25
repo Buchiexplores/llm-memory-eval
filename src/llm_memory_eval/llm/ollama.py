@@ -1,9 +1,8 @@
 """Local Ollama backend.
 
-Suitable for pilot evaluation on a laptop or workstation. The Chapter 3
-methodology explicitly permits a smaller Llama model under this backend
-for local development; production results should be reproduced on a
-cloud backend running the manuscript-specified ``Llama 3.1 70B Instruct``.
+Suitable for pilot evaluation on a laptop or workstation with a smaller
+Llama model. For production runs, use a cloud backend serving the larger
+target model (for example, ``Llama 3.1 70B Instruct``).
 """
 
 from __future__ import annotations

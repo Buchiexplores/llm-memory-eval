@@ -40,9 +40,9 @@ strategies on the same base model under matched decoding parameters,
 across three standardized long-context benchmarks: LongBench
 [@bai2024longbench], LoCoMo [@maharana2024locomo], and LongMemEval
 [@wu2025longmemeval]. The package provides backend-agnostic inference, a
-deterministic measurement layer, and a complete statistical-analysis
-pipeline, and it renders both publication-quality figures and APA-7
-dissertation chapter documents directly from the recorded results.
+deterministic measurement layer, a complete statistical-analysis
+pipeline, and publication-quality figures rendered directly from the
+recorded results.
 
 # Statement of need
 
@@ -76,8 +76,8 @@ this gap with four design commitments:
 
 4. **End-to-end reproducibility.** Random seeds, model identifiers,
    embedding-model revisions, and the package version are recorded in
-   run metadata; a single command reproduces the full pipeline from
-   benchmark download through figure and chapter rendering. A
+   run metadata; a single command runs the full pipeline from benchmark
+   download through statistical analysis and figure rendering. A
    deterministic unit-test suite runs in continuous integration across
    Python 3.10, 3.11, and 3.12.
 
@@ -94,8 +94,8 @@ comparative studies of memory-augmented LLMs.
 
 `llm-memory-eval` exposes a `typer` command-line interface with stages
 for data download, preparation, experiment execution, statistical
-analysis, figure generation, and dissertation-chapter construction, as
-well as an `all` command that runs the complete pipeline. Configuration
+analysis, and figure generation, as well as an `all` command that runs
+the complete pipeline. Configuration
 is supplied through validated YAML files, with environment-variable
 overrides for backend selection and seeding. The retrieval strategy uses
 the `intfloat/e5-large-v2` embedding model with a FAISS inner-product

@@ -1,6 +1,6 @@
 """Recursive abstractive summarization implemented via the base LLM.
 
-This matches the Chapter 3 design: the same LLM used for response
+The same LLM used for response
 generation produces an evolving rolling summary that is reintroduced into
 the prompt at answer time. To bound LLM call counts on long contexts we
 limit the number of chunks; when the context exceeds ``max_chunks *

@@ -1,9 +1,8 @@
 # llm-memory-eval
 
-`llm-memory-eval` is the open-source companion package to the
-dissertation *A Comparative Evaluation of Summarization and
-Retrieval-Augmented Memory Strategies for Long-Term Conversational
-Performance in Large Language Models* (Okeke, 2026).
+`llm-memory-eval` is an open-source experiment-running harness for
+comparing long-term memory strategies in large language models under
+controlled, reproducible conditions.
 
 It implements:
 
@@ -15,14 +14,12 @@ It implements:
   retrieval-augmented generation (fidelity-oriented).
 - Deterministic text metrics (F1, exact match) and conversational
   indicators (consistency, contradiction).
-- The full statistical analysis pipeline pre-registered in Chapter 3
-  (paired-samples *t*-tests with Holm–Bonferroni correction,
-  Wilcoxon confirmatory tests, 2 × 3 ANOVA on Strategy × Length,
-  Shapiro–Wilk and Levene assumption diagnostics, and
-  Bonferroni-corrected simple effects).
-- Publication-quality figures and a Chapter 4 / Chapter 5 `.docx`
-  builder that follows the University of the Cumberlands APA 7
-  quantitative dissertation template.
+- A complete statistical analysis pipeline (paired-samples *t*-tests
+  with Holm–Bonferroni correction, Wilcoxon confirmatory tests, 2 × 3
+  ANOVA on Strategy × Length, Shapiro–Wilk and Levene assumption
+  diagnostics, and Bonferroni-corrected simple effects).
+- Publication-quality figures rendered directly from the recorded
+  results.
 
 ## Where to start
 

@@ -1,4 +1,4 @@
-"""Unit tests for the length-bucket assignment rules from Chapter 3."""
+"""Unit tests for the benchmark length-bucket assignment rules."""
 
 from __future__ import annotations
 

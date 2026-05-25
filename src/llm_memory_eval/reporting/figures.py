@@ -2,8 +2,8 @@
 
 The figure set covers all three research questions plus diagnostic
 quantile-quantile plots used to inspect the normality assumption. Style
-defaults match APA-7 guidance (serif typeface, gridlines for legibility,
-no top/right spines, 300 dpi).
+defaults follow common publication conventions (serif typeface, gridlines
+for legibility, no top/right spines, 300 dpi).
 """
 
 from __future__ import annotations

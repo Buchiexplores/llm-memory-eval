@@ -18,7 +18,7 @@ pip install -e ".[cloud,viz]"
 
 | Extra     | What it adds                                                            |
 |-----------|-------------------------------------------------------------------------|
-| (none)    | Core pipeline, statistical analysis, Ollama backend, docx output.       |
+| (none)    | Core pipeline, statistical analysis, Ollama backend.                    |
 | `cloud`   | Together AI, AWS Bedrock, Hugging Face Endpoints, generic OpenAI-compat.|
 | `local`   | sentence-transformers, FAISS CPU, torch (needed for RAG locally).       |
 | `viz`     | matplotlib + kaleido (figure rendering).                                |

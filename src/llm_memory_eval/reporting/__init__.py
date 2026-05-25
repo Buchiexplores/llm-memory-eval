@@ -1,6 +1,5 @@
-"""Publication-quality figures and dissertation chapter builders."""
+"""Publication-quality figures for experiment results."""
 
-from llm_memory_eval.reporting.chapters import build_chapters
 from llm_memory_eval.reporting.figures import generate_figures
 
-__all__ = ["build_chapters", "generate_figures"]
+__all__ = ["generate_figures"]

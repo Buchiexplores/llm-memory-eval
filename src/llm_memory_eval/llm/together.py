@@ -2,7 +2,7 @@
 
 Together AI hosts Meta's open-weights Llama 3.1 70B Instruct and exposes
 an OpenAI-compatible API. This is the default cloud backend for
-reproducing the manuscript's primary results.
+production experiment runs.
 """
 
 from __future__ import annotations
@@ -21,8 +21,8 @@ class TogetherClient(OpenAICompatibleClient):
     ----------
     model
         Together AI model identifier. Defaults to
-        ``meta-llama/Llama-3.1-70B-Instruct-Turbo``. To match the manuscript
-        exactly, pass ``meta-llama/Meta-Llama-3.1-70B-Instruct``.
+        ``meta-llama/Llama-3.1-70B-Instruct-Turbo``. For the reference
+        (non-Turbo) configuration, pass ``meta-llama/Meta-Llama-3.1-70B-Instruct``.
     """
 
     name = "together"

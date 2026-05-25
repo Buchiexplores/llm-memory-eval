@@ -9,7 +9,7 @@ echo "Package:       $(python -c 'import llm_memory_eval; print(llm_memory_eval.
 
 echo
 echo "Optional dependencies:"
-for pkg in numpy pandas scipy pydantic sentence_transformers faiss matplotlib together boto3 docx; do
+for pkg in numpy pandas scipy pydantic sentence_transformers faiss matplotlib together boto3; do
   if python -c "import importlib; importlib.import_module(\"$pkg\")" 2>/dev/null; then
     version=$(python -c "import importlib; m = importlib.import_module(\"$pkg\"); print(getattr(m, '__version__', 'unknown'))")
     printf "  %-22s %s\n" "$pkg" "$version"

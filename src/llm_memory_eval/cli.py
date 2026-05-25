@@ -9,7 +9,6 @@ Examples
    $ llm-memory-eval run --config configs/cloud-production.yaml
    $ llm-memory-eval analyze
    $ llm-memory-eval figures
-   $ llm-memory-eval build-chapters
    $ llm-memory-eval all --config configs/cloud-production.yaml
 """
 
@@ -100,7 +99,7 @@ def run(
 def analyze(
     results_dir: Path = typer.Option(Path("results"), "--results-dir"),
 ) -> None:
-    """Run every statistical test specified in Chapter 3 on the experiment CSV."""
+    """Run the full statistical analysis on the experiment results CSV."""
     from llm_memory_eval.analysis.pipeline import run_full_analysis
 
     run_full_analysis(results_dir)
@@ -116,34 +115,19 @@ def figures(
     generate_figures(results_dir)
 
 
-@app.command("build-chapters")
-def build_chapters_cmd(
-    results_dir: Path = typer.Option(Path("results"), "--results-dir"),
-    output: Path = typer.Option(Path("dissertation"), "--output", "-o"),
-) -> None:
-    """Build the Chapter 4 and Chapter 5 .docx files."""
-    from llm_memory_eval.reporting.chapters import build_chapters
-
-    paths = build_chapters(results_dir, output)
-    for p in paths:
-        typer.echo(str(p))
-
-
 @app.command("all")
 def run_all(
     config: Path = typer.Option(..., "--config", "-c", exists=True),
     raw: Path = typer.Option(Path("data/raw"), "--raw"),
     processed: Path = typer.Option(Path("data/processed"), "--processed"),
     results: Path = typer.Option(Path("results"), "--results"),
-    dissertation: Path = typer.Option(Path("dissertation"), "--dissertation"),
 ) -> None:
-    """Run the full pipeline: download, prepare, run, analyze, figures, chapters."""
+    """Run the full pipeline: download, prepare, run, analyze, figures."""
     download_data(output=raw)
     prepare_data(raw=raw, output=processed)
     run(config=config, instances=processed / "all_instances.json", output=results, seed=None)
     analyze(results_dir=results)
     figures(results_dir=results)
-    build_chapters_cmd(results_dir=results, output=dissertation)
 
 
 if __name__ == "__main__":

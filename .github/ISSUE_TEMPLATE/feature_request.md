@@ -16,9 +16,9 @@ Describe the change you would like.
 
 ## Scientific-replication impact
 
-Does this change affect any code path that produces a number reported in
-the underlying manuscript or its replication artefacts? If yes, list which
-fixture in `tests/fixtures/` will be added or updated.
+Does this change affect any code path that produces a reported result or
+replication artefact? If yes, list which fixture in `tests/fixtures/` will
+be added or updated.
 
 ## Alternatives considered
 

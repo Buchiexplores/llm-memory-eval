@@ -13,13 +13,12 @@
 > performance in large language models, on three long-context benchmarks
 > (LongBench, LoCoMo, LongMemEval).
 
-This is the open-source companion package to the doctoral dissertation *A
-Comparative Evaluation of Summarization and Retrieval-Augmented Memory
-Strategies for Long-Term Conversational Performance in Large Language
-Models* (Okeke, 2026, University of the Cumberlands). It reproduces every
-quantitative result reported in the manuscript and produces the Chapter 4
-and Chapter 5 `.docx` files that follow the University of the Cumberlands
-APA 7 quantitative dissertation template.
+`llm-memory-eval` is an experiment-running harness for comparing
+long-term memory strategies in large language models under controlled,
+reproducible conditions. It downloads and prepares the benchmark
+instances, runs both memory-strategy conditions on a single base model,
+computes the outcome metrics, executes the statistical analyses, and
+renders publication-quality figures.
 
 ## Abstract
 
@@ -49,18 +48,17 @@ independent replication.
 - **Backend-agnostic LLM interface.** One configuration file selects
   Ollama (local pilot), Together AI (default cloud), AWS Bedrock,
   Hugging Face Inference Endpoints, or any OpenAI-compatible endpoint.
-- **Manuscript-faithful pipeline.** Greedy decoding, `seed = 42`,
-  `intfloat/e5-large-v2` embeddings, FAISS inner-product retrieval,
-  recursive summarization, and the exact statistical tests pre-registered
-  in Chapter 3.
-- **Full statistical replication.** Paired-samples *t*-tests with
+- **Controlled, deterministic pipeline.** Greedy decoding, `seed = 42`,
+  `intfloat/e5-large-v2` embeddings, FAISS inner-product retrieval, and
+  recursive summarization, all held constant across both conditions.
+- **Complete statistical analysis.** Paired-samples *t*-tests with
   Holm-Bonferroni correction, Wilcoxon confirmatory tests, 2 × 3 ANOVA
   on Strategy × Length, Shapiro-Wilk and Levene assumption diagnostics,
   Bonferroni-corrected simple effects, Cohen's *d*, partial η², and 95
   percent confidence intervals.
-- **Publication-quality outputs.** Seven matplotlib figures and two
-  `.docx` chapter files ready for submission.
-- **PhD-quality engineering.** Type hints, Pydantic configuration,
+- **Publication-quality figures.** Seven matplotlib figures rendered
+  directly from the recorded results.
+- **Research-grade engineering.** Type hints, Pydantic configuration,
   unit-tested metrics and statistics, GitHub Actions CI on Python 3.10
   / 3.11 / 3.12, pre-commit hooks, multi-stage Dockerfile.
 
@@ -79,8 +77,8 @@ scripts/reproduce_results.sh
 ```
 
 The script runs the full pipeline: download benchmarks, prepare
-instances, evaluate both strategies, run the statistical analyses,
-render figures, and build the Chapter 4 / Chapter 5 `.docx` files.
+instances, evaluate both strategies, run the statistical analyses, and
+render figures.
 
 A local laptop pilot is supported with the same command and a different
 config:
@@ -107,7 +105,7 @@ CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
 ```
 .
 ├── src/llm_memory_eval/        # Python package
-│   ├── cli.py                  # Typer CLI: download / prepare / run / analyze / figures / build-chapters / all
+│   ├── cli.py                  # Typer CLI: download / prepare / run / analyze / figures / all
 │   ├── config.py               # Pydantic-validated YAML configuration
 │   ├── llm/                    # Backend abstraction + Ollama, Together, OpenAI-compat, Bedrock, HF
 │   ├── memory/                 # Summarization and RAG strategies
@@ -115,7 +113,7 @@ CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
 │   ├── data/                   # Benchmark download, prepare, stratify, length buckets
 │   ├── experiment/             # Runner + result schema with checkpointing
 │   ├── analysis/               # Descriptive, paired, ANOVA, assumptions, pipeline
-│   ├── reporting/              # Figures + Chapter 4/5 builders
+│   ├── reporting/              # Publication-quality figures
 │   └── utils/                  # Logging, seeding, token counting
 ├── tests/                      # Pytest suite (deterministic, no live API calls)
 ├── configs/                    # default / local-pilot / cloud-production YAMLs

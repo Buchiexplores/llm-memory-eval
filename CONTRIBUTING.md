@@ -57,7 +57,7 @@ Pre-commit will run these automatically when configured.
 
 Any change that affects evaluation logic - text normalization, F1
 computation, abstention regex, chunking, retrieval ranking, statistical
-tests, or any code path that produces a number reported in the manuscript -
+tests, or any code path that produces a reported result -
 **must** be accompanied by a regression test backed by a versioned fixture
 in `tests/fixtures/`. This guarantees that downstream replicators can detect
 behavioural drift between releases. PRs that change evaluation behaviour

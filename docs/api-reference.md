@@ -34,7 +34,7 @@ llm_memory_eval.<module>` or the docstrings directly for full signatures.
 
 ## `llm_memory_eval.data`
 
-- `assign_length_bucket(...)` — Chapter 3 length thresholds.
+- `assign_length_bucket(...)` — benchmark-specific length thresholds.
 - `stratified_subsample(instances, per_length, seed)` — balanced sampling.
 - `download_datasets(output_dir)` — fetches LongBench / LoCoMo / LongMemEval.
 - `prepare_all(raw_dir, output_dir)` — produces a unified instances JSON.
@@ -56,8 +56,6 @@ llm_memory_eval.<module>` or the docstrings directly for full signatures.
 ## `llm_memory_eval.reporting`
 
 - `generate_figures(results_dir)` — renders all publication figures.
-- `build_chapters(results_dir, output_dir)` — writes Chapter 4 and 5
-  `.docx` files.
 
 ## CLI
 
@@ -68,6 +66,5 @@ llm-memory-eval prepare-data
 llm-memory-eval run --config configs/cloud-production.yaml
 llm-memory-eval analyze
 llm-memory-eval figures
-llm-memory-eval build-chapters
 llm-memory-eval all --config configs/cloud-production.yaml
 ```

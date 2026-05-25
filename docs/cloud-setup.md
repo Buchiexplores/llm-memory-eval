@@ -1,15 +1,13 @@
 # Cloud setup
 
-This guide walks through the cloud deployment that matches the
-manuscript exactly: Meta Llama 3.1 70B Instruct served from Together AI.
-Alternative cloud backends (AWS Bedrock, Hugging Face Inference
-Endpoints, self-hosted vLLM) are documented at the end for reviewers
-who require them.
+This guide walks through the reference cloud deployment: Meta Llama 3.1
+70B Instruct served from Together AI. Alternative cloud backends (AWS
+Bedrock, Hugging Face Inference Endpoints, self-hosted vLLM) are
+documented at the end for reviewers who require them.
 
 The package is provider-agnostic at the code level. Switching providers
 means changing one YAML field and one environment variable; the
-experiment runner, statistical pipeline, figures, and chapter builder
-stay identical.
+experiment runner, statistical pipeline, and figures stay identical.
 
 ## Why Together AI is appropriate for US academic research
 
@@ -107,7 +105,7 @@ Two production variants are available:
 
 | Together AI model id                              | Notes                                  |
 |---------------------------------------------------|----------------------------------------|
-| `meta-llama/Meta-Llama-3.1-70B-Instruct`          | Reference 70B; matches the manuscript. |
+| `meta-llama/Meta-Llama-3.1-70B-Instruct`          | Reference 70B configuration.           |
 | `meta-llama/Llama-3.1-70B-Instruct-Turbo`         | Speed-optimised variant; cheaper, marginally different numerics. |
 
 Pin whichever you choose in the config so reviewers can reproduce

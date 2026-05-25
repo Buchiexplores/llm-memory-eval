@@ -27,8 +27,8 @@ abstract: >-
   pipeline (paired-samples t-tests with Holm-Bonferroni correction, Wilcoxon
   signed-rank confirmatory tests, two-way ANOVA on Strategy x Conversation
   Length with Bonferroni-corrected simple effects, Shapiro-Wilk and Levene
-  assumption diagnostics, Cohen's d, and partial eta-squared) that reproduces
-  the quantitative results reported in the associated doctoral dissertation.
+  assumption diagnostics, Cohen's d, and partial eta-squared), together with
+  publication-quality figures rendered from the recorded results.
 keywords:
   - large language models
   - retrieval-augmented generation

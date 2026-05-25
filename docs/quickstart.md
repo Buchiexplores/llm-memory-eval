@@ -1,7 +1,7 @@
 # Quickstart
 
 This guide reproduces the full experimental pipeline in under ten
-commands. The default flow assumes the manuscript's cloud configuration
+commands. The default flow assumes the reference cloud configuration
 (Together AI hosting Meta Llama 3.1 70B Instruct).
 
 ## 1. Install
@@ -32,7 +32,6 @@ llm-memory-eval prepare-data
 llm-memory-eval run --config configs/cloud-production.yaml
 llm-memory-eval analyze
 llm-memory-eval figures
-llm-memory-eval build-chapters
 ```
 
 or in one command:
@@ -47,10 +46,8 @@ After the pipeline finishes you will have:
 
 - `results/experiment_results.csv` — per-instance outcomes.
 - `results/statistical_analyses.json` — every statistical test.
-- `results/tables/*.csv` — APA-ready descriptive and inferential tables.
+- `results/tables/*.csv` — descriptive and inferential result tables.
 - `results/figures/*.png` — publication-quality figures.
-- `dissertation/Chapter_4.docx`, `dissertation/Chapter_5.docx` —
-  University of the Cumberlands APA 7 template output.
 
 ## 5. Pilot first (recommended)
 

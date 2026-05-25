@@ -47,7 +47,6 @@
     "pydantic",
     "typer",
     "tiktoken",
-    "python-docx",
     "matplotlib",
     "sentence-transformers",
     "faiss-cpu"

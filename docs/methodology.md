@@ -1,8 +1,7 @@
 # Methodology
 
-This document summarises the comparative design implemented in the
-package. The full methodological treatment is in Chapter 3 of the
-dissertation.
+This document summarises the comparative experimental design implemented
+in the package.
 
 ## Research questions
 

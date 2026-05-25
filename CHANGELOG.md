@@ -22,10 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Strategy x Length, Shapiro-Wilk normality, Levene homogeneity-of-variance,
   Bonferroni-corrected simple-effects post-hoc tests, and Cohen's d / partial
   eta-squared effect sizes.
-- Publication-quality matplotlib figures and University of the Cumberlands
-  APA-7 Chapter 4 / Chapter 5 .docx builders.
+- Publication-quality matplotlib figures rendered from the recorded results.
 - Typer-based CLI (`llm-memory-eval`) with `download-data`, `prepare-data`,
-  `run`, `analyze`, `figures`, `build-chapters`, and `all` commands.
+  `run`, `analyze`, `figures`, and `all` commands.
 - YAML-driven configuration with environment-variable overrides.
 - Continuous integration on Python 3.10, 3.11, and 3.12.
 - Multi-stage Docker image for cloud-backend execution.

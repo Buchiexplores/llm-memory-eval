@@ -1,8 +1,8 @@
-"""Benchmark-specific length-category thresholds from Chapter 3.
+"""Benchmark-specific length-category thresholds.
 
 LongBench and LongMemEval use total input token count; LoCoMo uses
 session and turn counts because the benchmark is structured around
-multi-session dialogue. The thresholds below match the manuscript exactly.
+multi-session dialogue.
 """
 
 from __future__ import annotations

@@ -1,4 +1,4 @@
-"""End-to-end analysis pipeline producing the manuscript's statistical tables."""
+"""End-to-end analysis pipeline producing the study's statistical tables."""
 
 from __future__ import annotations
 
@@ -60,7 +60,7 @@ def _load_results(results_dir: Path) -> pd.DataFrame:
 
 
 def run_full_analysis(results_dir: Path) -> Dict[str, Any]:
-    """Run every statistical test specified in Chapter 3 and write outputs.
+    """Run the full statistical analysis and write outputs.
 
     Produces:
       - ``results_dir/statistical_analyses.json`` (all analyses combined)

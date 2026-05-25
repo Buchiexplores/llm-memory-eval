@@ -11,8 +11,7 @@ class InstanceResult(BaseModel):
     """One row of the experiment results CSV.
 
     Each row pairs a single benchmark instance with both memory strategy
-    conditions, supporting the within-instance paired analyses described
-    in Chapter 3.
+    conditions, supporting the within-instance paired analyses.
     """
 
     instance_id: str
