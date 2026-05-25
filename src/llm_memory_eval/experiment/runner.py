@@ -43,9 +43,7 @@ def _answer_prompt(memory_context: str, question: str) -> str:
 
 def _git_commit() -> Optional[str]:
     try:
-        out = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL
-        )
+        out = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL)
         return out.decode("ascii").strip()
     except Exception:  # noqa: BLE001
         return None
@@ -70,8 +68,10 @@ class ExperimentRunner:
     ) -> List[InstanceResult]:
         """Run the experiment over *instances*, resuming from a partial CSV if present."""
         results_csv = Path(results_csv)
-        partial_csv = Path(partial_csv) if partial_csv else results_csv.with_name(
-            results_csv.stem + "_partial.csv"
+        partial_csv = (
+            Path(partial_csv)
+            if partial_csv
+            else results_csv.with_name(results_csv.stem + "_partial.csv")
         )
         results_csv.parent.mkdir(parents=True, exist_ok=True)
 
@@ -80,9 +80,9 @@ class ExperimentRunner:
 
         if partial_csv.exists():
             with partial_csv.open("r", newline="", encoding="utf-8") as fh:
-                for row in csv.DictReader(fh):
-                    rows.append(InstanceResult.model_validate(row))
-                    completed_ids.add(row["instance_id"])
+                for csv_row in csv.DictReader(fh):
+                    rows.append(InstanceResult.model_validate(csv_row))
+                    completed_ids.add(csv_row["instance_id"])
             log.info("Resuming from checkpoint: %d already done", len(completed_ids))
 
         instances_list = list(instances)
@@ -97,8 +97,13 @@ class ExperimentRunner:
             elapsed = time.perf_counter() - t_start
             log.info(
                 "[%d/%d] %s (%s, %s, ctx~%d tok) elapsed=%.0fs",
-                idx, total, iid, inst["benchmark"], inst["length_category"],
-                inst["context_tokens_approx"], elapsed,
+                idx,
+                total,
+                iid,
+                inst["benchmark"],
+                inst["length_category"],
+                inst["context_tokens_approx"],
+                elapsed,
             )
 
             row = self._run_one(inst)
@@ -120,15 +125,11 @@ class ExperimentRunner:
         budget = self.cfg.memory.context_budget_tokens
         cfg_dec = self.cfg.decoding
 
-        summ_data = self._safe_strategy(
-            self.summ.process, context, question, budget_tokens=budget
-        )
+        summ_data = self._safe_strategy(self.summ.process, context, question, budget_tokens=budget)
         summ_ans = self._answer(summ_data.text, question)
         summ_metrics = self._score(summ_ans.text, answers)
 
-        rag_data = self._safe_strategy(
-            self.rag.process, context, question, budget_tokens=budget
-        )
+        rag_data = self._safe_strategy(self.rag.process, context, question, budget_tokens=budget)
         rag_ans = self._answer(rag_data.text, question)
         rag_metrics = self._score(rag_ans.text, answers)
 

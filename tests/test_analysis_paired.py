@@ -14,9 +14,20 @@ class TestPairedTest:
         b = rng.normal(0.5, 0.1, 50)
         result = paired_test(a, b, "Demo")
         expected = {
-            "Variable", "Test", "N", "M_Summ", "SD_Summ", "M_RAG", "SD_RAG",
-            "Mean_Diff", "Statistic", "p", "Cohen_d", "CI_95",
-            "Wilcoxon_W", "Wilcoxon_p",
+            "Variable",
+            "Test",
+            "N",
+            "M_Summ",
+            "SD_Summ",
+            "M_RAG",
+            "SD_RAG",
+            "Mean_Diff",
+            "Statistic",
+            "p",
+            "Cohen_d",
+            "CI_95",
+            "Wilcoxon_W",
+            "Wilcoxon_p",
         }
         assert expected.issubset(result.keys())
 

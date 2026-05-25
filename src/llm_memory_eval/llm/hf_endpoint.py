@@ -101,7 +101,9 @@ class HFEndpointClient(LLMClient):
                 last_err = e
                 log.warning(
                     "HF Endpoint call failed (attempt %d/%d): %s",
-                    attempt + 1, self.max_retries, e,
+                    attempt + 1,
+                    self.max_retries,
+                    e,
                 )
                 time.sleep(2 * (attempt + 1))
         raise RuntimeError(

@@ -83,7 +83,10 @@ class OllamaClient(LLMClient):
                 )
             except Exception as e:  # noqa: BLE001 - any HTTP/network issue retried
                 last_err = e
-                log.warning("Ollama call failed (attempt %d/%d): %s",
-                            attempt + 1, self.max_retries, e)
+                log.warning(
+                    "Ollama call failed (attempt %d/%d): %s", attempt + 1, self.max_retries, e
+                )
                 time.sleep(2 * (attempt + 1))
-        raise RuntimeError(f"Ollama generation failed after {self.max_retries} attempts: {last_err}")
+        raise RuntimeError(
+            f"Ollama generation failed after {self.max_retries} attempts: {last_err}"
+        )

@@ -79,10 +79,12 @@ def generate_figures(results_dir: Path) -> None:
 
     _figure_rq1(analyses, fig_dir)
     _figure_rq2(df, analyses, fig_dir)
-    _figure_rq3_interaction(analyses, fig_dir, index=0, key="f1_interaction",
-                            ylabel="Mean Recall Accuracy (F1)")
-    _figure_rq3_interaction(analyses, fig_dir, index=2, key="latency_interaction",
-                            ylabel="Response Latency (s)")
+    _figure_rq3_interaction(
+        analyses, fig_dir, index=0, key="f1_interaction", ylabel="Mean Recall Accuracy (F1)"
+    )
+    _figure_rq3_interaction(
+        analyses, fig_dir, index=2, key="latency_interaction", ylabel="Response Latency (s)"
+    )
     _figure_rq3_storage(analyses, fig_dir)
     _figure_benchmark(analyses, fig_dir)
     _figure_qq(df, fig_dir)
@@ -99,27 +101,56 @@ def _figure_rq1(analyses, fig_dir: Path) -> None:
     fig, ax = plt.subplots(figsize=(8, 5))
     x = np.arange(len(labels))
     w = 0.32
-    ax.bar(x - w / 2, summ, w, yerr=summ_sd, capsize=5,
-           color=_COLOR_SUMM, edgecolor=_COLOR_SUMM_DARK, linewidth=1.2,
-           label="Summarization", alpha=0.85)
-    ax.bar(x + w / 2, rag, w, yerr=rag_sd, capsize=5,
-           color=_COLOR_RAG, edgecolor=_COLOR_RAG_DARK, linewidth=1.2,
-           label="RAG", alpha=0.85)
+    ax.bar(
+        x - w / 2,
+        summ,
+        w,
+        yerr=summ_sd,
+        capsize=5,
+        color=_COLOR_SUMM,
+        edgecolor=_COLOR_SUMM_DARK,
+        linewidth=1.2,
+        label="Summarization",
+        alpha=0.85,
+    )
+    ax.bar(
+        x + w / 2,
+        rag,
+        w,
+        yerr=rag_sd,
+        capsize=5,
+        color=_COLOR_RAG,
+        edgecolor=_COLOR_RAG_DARK,
+        linewidth=1.2,
+        label="RAG",
+        alpha=0.85,
+    )
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylabel("Mean Score", fontweight="bold")
-    top = max(max(s + e for s, e in zip(summ, summ_sd)),
-              max(r + e for r, e in zip(rag, rag_sd)))
+    top = max(max(s + e for s, e in zip(summ, summ_sd)), max(r + e for r, e in zip(rag, rag_sd)))
     ax.set_ylim(0, max(0.05, top) * 1.2)
     for i, r in enumerate(rq1):
-        ax.text(i, top * 1.07, _stars(r.get("p_adj", r["p"])),
-                ha="center", fontsize=11, fontweight="bold")
+        ax.text(
+            i,
+            top * 1.07,
+            _stars(r.get("p_adj", r["p"])),
+            ha="center",
+            fontsize=11,
+            fontweight="bold",
+        )
     ax.legend(loc="upper right")
-    ax.text(0.02, 0.98,
-            "* p < .05    ** p < .01    *** p < .001    † p < .10    "
-            "ns = not significant (Holm-Bonferroni adjusted)",
-            transform=ax.transAxes, fontsize=8.5, va="top", fontstyle="italic",
-            color="#666666")
+    ax.text(
+        0.02,
+        0.98,
+        "* p < .05    ** p < .01    *** p < .001    † p < .10    "
+        "ns = not significant (Holm-Bonferroni adjusted)",
+        transform=ax.transAxes,
+        fontsize=8.5,
+        va="top",
+        fontstyle="italic",
+        color="#666666",
+    )
     plt.tight_layout()
     plt.savefig(fig_dir / "figure1_rq1_recall_consistency.png")
     plt.close()
@@ -133,39 +164,76 @@ def _figure_rq2(df, analyses, fig_dir: Path) -> None:
 
     fig, axes = plt.subplots(1, 3, figsize=(12, 4.5))
 
-    lat_cap = max(df["summ_total_latency"].quantile(0.95),
-                  df["rag_total_latency"].quantile(0.95))
-    _boxplot(axes[0], [df["summ_total_latency"].clip(upper=lat_cap),
-                       df["rag_total_latency"].clip(upper=lat_cap)],
-             title="(a) Response Latency", ylabel="Response Latency (s)", marker=_stars(lat_p))
-    _boxplot(axes[1], [df["summ_total_tokens"][df["summ_total_tokens"] > 0],
-                       df["rag_total_tokens"][df["rag_total_tokens"] > 0]],
-             title="(b) Token Usage", ylabel="Token Usage", marker=_stars(tok_p))
-    _boxplot(axes[2], [df["summ_storage"][df["summ_storage"] > 0] / 1000,
-                       df["rag_storage"][df["rag_storage"] > 0] / 1000],
-             title="(c) Storage Overhead", ylabel="Storage Overhead (KB)", marker=_stars(sto_p))
+    lat_cap = max(df["summ_total_latency"].quantile(0.95), df["rag_total_latency"].quantile(0.95))
+    _boxplot(
+        axes[0],
+        [
+            df["summ_total_latency"].clip(upper=lat_cap),
+            df["rag_total_latency"].clip(upper=lat_cap),
+        ],
+        title="(a) Response Latency",
+        ylabel="Response Latency (s)",
+        marker=_stars(lat_p),
+    )
+    _boxplot(
+        axes[1],
+        [
+            df["summ_total_tokens"][df["summ_total_tokens"] > 0],
+            df["rag_total_tokens"][df["rag_total_tokens"] > 0],
+        ],
+        title="(b) Token Usage",
+        ylabel="Token Usage",
+        marker=_stars(tok_p),
+    )
+    _boxplot(
+        axes[2],
+        [
+            df["summ_storage"][df["summ_storage"] > 0] / 1000,
+            df["rag_storage"][df["rag_storage"] > 0] / 1000,
+        ],
+        title="(c) Storage Overhead",
+        ylabel="Storage Overhead (KB)",
+        marker=_stars(sto_p),
+    )
 
-    fig.text(0.5, -0.03,
-             "* p < .05    ** p < .01    *** p < .001    † p < .10    "
-             "ns = not significant",
-             ha="center", fontsize=10, fontstyle="italic", color="#666666")
+    fig.text(
+        0.5,
+        -0.03,
+        "* p < .05    ** p < .01    *** p < .001    † p < .10    " "ns = not significant",
+        ha="center",
+        fontsize=10,
+        fontstyle="italic",
+        color="#666666",
+    )
     plt.tight_layout()
     plt.savefig(fig_dir / "figure2_rq2_efficiency.png")
     plt.close()
 
 
 def _boxplot(ax, data, *, title, ylabel, marker) -> None:
-    bp = ax.boxplot(data, tick_labels=["Summarization", "RAG"], patch_artist=True,
-                    widths=0.5,
-                    medianprops=dict(color="white", linewidth=2),
-                    flierprops=dict(marker="o", markersize=3, markerfacecolor="#888888", alpha=0.4),
-                    whiskerprops=dict(linewidth=1.2), capprops=dict(linewidth=1.2))
+    bp = ax.boxplot(
+        data,
+        tick_labels=["Summarization", "RAG"],
+        patch_artist=True,
+        widths=0.5,
+        medianprops=dict(color="white", linewidth=2),
+        flierprops=dict(marker="o", markersize=3, markerfacecolor="#888888", alpha=0.4),
+        whiskerprops=dict(linewidth=1.2),
+        capprops=dict(linewidth=1.2),
+    )
     bp["boxes"][0].set(facecolor=_COLOR_SUMM, alpha=0.8)
     bp["boxes"][1].set(facecolor=_COLOR_RAG, alpha=0.8)
     ax.set_ylabel(ylabel, fontweight="bold")
     ax.set_title(title)
-    ax.text(1.5, ax.get_ylim()[1] * 0.92, marker, ha="center", fontsize=14,
-            fontweight="bold", color=_COLOR_RAG_DARK)
+    ax.text(
+        1.5,
+        ax.get_ylim()[1] * 0.92,
+        marker,
+        ha="center",
+        fontsize=14,
+        fontweight="bold",
+        color=_COLOR_RAG_DARK,
+    )
 
 
 def _figure_rq3_interaction(analyses, fig_dir: Path, *, index: int, key: str, ylabel: str) -> None:
@@ -178,19 +246,38 @@ def _figure_rq3_interaction(analyses, fig_dir: Path, *, index: int, key: str, yl
 
     fig, ax = plt.subplots(figsize=(7, 5))
     x = np.arange(3)
-    ax.errorbar(x, summ, yerr=summ_sd, marker="s", color=_COLOR_SUMM_DARK,
-                linewidth=2, capsize=6, label="Summarization", linestyle="--",
-                markersize=10, markerfacecolor=_COLOR_SUMM)
-    ax.errorbar(x, rag, yerr=rag_sd, marker="^", color=_COLOR_RAG_DARK,
-                linewidth=2, capsize=6, label="RAG", linestyle="-",
-                markersize=10, markerfacecolor=_COLOR_RAG)
+    ax.errorbar(
+        x,
+        summ,
+        yerr=summ_sd,
+        marker="s",
+        color=_COLOR_SUMM_DARK,
+        linewidth=2,
+        capsize=6,
+        label="Summarization",
+        linestyle="--",
+        markersize=10,
+        markerfacecolor=_COLOR_SUMM,
+    )
+    ax.errorbar(
+        x,
+        rag,
+        yerr=rag_sd,
+        marker="^",
+        color=_COLOR_RAG_DARK,
+        linewidth=2,
+        capsize=6,
+        label="RAG",
+        linestyle="-",
+        markersize=10,
+        markerfacecolor=_COLOR_RAG,
+    )
     ax.set_xticks(x)
     ax.set_xticklabels(["Short", "Medium", "Long"], fontweight="bold")
     ax.set_xlabel("Conversation Length Category", fontweight="bold")
     ax.set_ylabel(ylabel, fontweight="bold")
     ax.legend(loc="upper right")
-    top = max(max(m + s for m, s in zip(summ, summ_sd)),
-              max(m + s for m, s in zip(rag, rag_sd)))
+    top = max(max(m + s for m, s in zip(summ, summ_sd)), max(m + s for m, s in zip(rag, rag_sd)))
     ax.set_ylim(0, max(0.05, top) * 1.15)
     plt.tight_layout()
     plt.savefig(fig_dir / f"figure3_rq3_{key}.png")
@@ -207,12 +294,32 @@ def _figure_rq3_storage(analyses, fig_dir: Path) -> None:
 
     fig, ax = plt.subplots(figsize=(7, 5))
     x = np.arange(3)
-    ax.errorbar(x, summ, yerr=summ_sd, marker="s", color=_COLOR_SUMM_DARK,
-                linewidth=2, capsize=6, label="Summarization", linestyle="--",
-                markersize=10, markerfacecolor=_COLOR_SUMM)
-    ax.errorbar(x, rag, yerr=rag_sd, marker="^", color=_COLOR_RAG_DARK,
-                linewidth=2, capsize=6, label="RAG", linestyle="-",
-                markersize=10, markerfacecolor=_COLOR_RAG)
+    ax.errorbar(
+        x,
+        summ,
+        yerr=summ_sd,
+        marker="s",
+        color=_COLOR_SUMM_DARK,
+        linewidth=2,
+        capsize=6,
+        label="Summarization",
+        linestyle="--",
+        markersize=10,
+        markerfacecolor=_COLOR_SUMM,
+    )
+    ax.errorbar(
+        x,
+        rag,
+        yerr=rag_sd,
+        marker="^",
+        color=_COLOR_RAG_DARK,
+        linewidth=2,
+        capsize=6,
+        label="RAG",
+        linestyle="-",
+        markersize=10,
+        markerfacecolor=_COLOR_RAG,
+    )
     ax.set_xticks(x)
     ax.set_xticklabels(["Short", "Medium", "Long"], fontweight="bold")
     ax.set_xlabel("Conversation Length Category", fontweight="bold")
@@ -223,10 +330,16 @@ def _figure_rq3_storage(analyses, fig_dir: Path) -> None:
     p_int = rq.get("p_Interaction", 1.0)
     p_txt = "< .001" if p_int < 0.001 else f"= {p_int:.3f}"
     top = max(rag) + max(rag_sd) + 20
-    ax.annotate(f"Strategy x Length Interaction\n(ηp² = {eta:.3f}, p {p_txt})",
-                xy=(2, rag[2]), xytext=(1.2, top), fontsize=9,
-                fontstyle="italic", color=_COLOR_RAG_DARK, fontweight="bold",
-                arrowprops=dict(arrowstyle="->", color=_COLOR_RAG_DARK, lw=1.5))
+    ax.annotate(
+        f"Strategy x Length Interaction\n(ηp² = {eta:.3f}, p {p_txt})",
+        xy=(2, rag[2]),
+        xytext=(1.2, top),
+        fontsize=9,
+        fontstyle="italic",
+        color=_COLOR_RAG_DARK,
+        fontweight="bold",
+        arrowprops=dict(arrowstyle="->", color=_COLOR_RAG_DARK, lw=1.5),
+    )
     plt.tight_layout()
     plt.savefig(fig_dir / "figure4_rq3_storage_interaction.png")
     plt.close()
@@ -243,22 +356,46 @@ def _figure_benchmark(analyses, fig_dir: Path) -> None:
     fig, ax = plt.subplots(figsize=(7, 5))
     x = np.arange(len(names))
     w = 0.32
-    bars1 = ax.bar(x - w / 2, summ, w, yerr=summ_sd, capsize=5,
-                   color=_COLOR_SUMM, edgecolor=_COLOR_SUMM_DARK, linewidth=1.2,
-                   label="Summarization", alpha=0.85)
-    bars2 = ax.bar(x + w / 2, rag, w, yerr=rag_sd, capsize=5,
-                   color=_COLOR_RAG, edgecolor=_COLOR_RAG_DARK, linewidth=1.2,
-                   label="RAG", alpha=0.85)
+    bars1 = ax.bar(
+        x - w / 2,
+        summ,
+        w,
+        yerr=summ_sd,
+        capsize=5,
+        color=_COLOR_SUMM,
+        edgecolor=_COLOR_SUMM_DARK,
+        linewidth=1.2,
+        label="Summarization",
+        alpha=0.85,
+    )
+    bars2 = ax.bar(
+        x + w / 2,
+        rag,
+        w,
+        yerr=rag_sd,
+        capsize=5,
+        color=_COLOR_RAG,
+        edgecolor=_COLOR_RAG_DARK,
+        linewidth=1.2,
+        label="RAG",
+        alpha=0.85,
+    )
     for group in (bars1, bars2):
         for bar in group:
             height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width() / 2.0, height + 0.01,
-                    f"{height:.3f}", ha="center", va="bottom", fontsize=8, color="#444444")
+            ax.text(
+                bar.get_x() + bar.get_width() / 2.0,
+                height + 0.01,
+                f"{height:.3f}",
+                ha="center",
+                va="bottom",
+                fontsize=8,
+                color="#444444",
+            )
     ax.set_ylabel("Mean Recall Accuracy (F1)", fontweight="bold")
     ax.set_xticks(x)
     ax.set_xticklabels(names, fontweight="bold")
-    top = max(max(s + e for s, e in zip(summ, summ_sd)),
-              max(r + e for r, e in zip(rag, rag_sd)))
+    top = max(max(s + e for s, e in zip(summ, summ_sd)), max(r + e for r, e in zip(rag, rag_sd)))
     ax.set_ylim(0, max(0.05, top) * 1.15)
     ax.legend(loc="upper right")
     plt.tight_layout()
@@ -291,8 +428,9 @@ def _figure_qq(df, fig_dir: Path) -> None:
         ax = axes[idx]
         diff = df[rv].to_numpy(dtype=float) - df[sv].to_numpy(dtype=float)
         (osm, osr), (slope, intercept, _r) = sp_stats.probplot(diff, dist="norm")
-        ax.scatter(osm, osr, s=12, alpha=0.6, color=_COLOR_SUMM,
-                   edgecolor=_COLOR_SUMM_DARK, linewidth=0.5)
+        ax.scatter(
+            osm, osr, s=12, alpha=0.6, color=_COLOR_SUMM, edgecolor=_COLOR_SUMM_DARK, linewidth=0.5
+        )
         fit = slope * np.array(osm) + intercept
         ax.plot(osm, fit, color=_COLOR_RAG_DARK, linewidth=1.5, linestyle="--")
         ax.set_title(label, fontsize=10, fontweight="bold")
@@ -300,8 +438,12 @@ def _figure_qq(df, fig_dir: Path) -> None:
         ax.set_ylabel("Sample Quantiles", fontsize=8)
         ax.tick_params(labelsize=7)
     axes[7].set_visible(False)
-    fig.suptitle("Q-Q Plots of Paired Difference Scores (RAG − Summarization)",
-                 fontsize=13, fontweight="bold", y=1.02)
+    fig.suptitle(
+        "Q-Q Plots of Paired Difference Scores (RAG − Summarization)",
+        fontsize=13,
+        fontweight="bold",
+        y=1.02,
+    )
     plt.tight_layout()
     plt.savefig(fig_dir / "figure7_qq_plots.png")
     plt.close()

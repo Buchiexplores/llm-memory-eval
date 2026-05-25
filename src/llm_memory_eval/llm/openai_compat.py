@@ -95,7 +95,9 @@ class OpenAICompatibleClient(LLMClient):
                 last_err = e
                 log.warning(
                     "OpenAI-compatible call failed (attempt %d/%d): %s",
-                    attempt + 1, self.max_retries, e,
+                    attempt + 1,
+                    self.max_retries,
+                    e,
                 )
                 time.sleep(2 * (attempt + 1))
         raise RuntimeError(

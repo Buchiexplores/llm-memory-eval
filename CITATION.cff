@@ -11,7 +11,7 @@ authors:
     affiliation: "University of the Cumberlands, Williamsburg, Kentucky, USA"
     orcid: "https://orcid.org/0000-0001-8684-1115"
 license: MIT
-doi: 10.5281/zenodo.XXXXXXX  # TODO: replace with the Zenodo DOI minted on first release
+# A Zenodo DOI will be added here once the first release is archived.
 repository-code: "https://github.com/Buchiexplores/llm-memory-eval"
 url: "https://github.com/Buchiexplores/llm-memory-eval"
 abstract: >-

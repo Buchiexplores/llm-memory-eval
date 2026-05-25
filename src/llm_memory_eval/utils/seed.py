@@ -37,7 +37,7 @@ def _seed_torch_if_available(seed: int) -> None:
         if torch.cuda.is_available():
             torch.cuda.manual_seed_all(seed)
         if hasattr(torch, "mps") and torch.backends.mps.is_available():
-            torch.mps.manual_seed(seed)  # type: ignore[attr-defined]
+            torch.mps.manual_seed(seed)
     except Exception:
         # torch is an optional dependency; absence is not an error
         return

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, cast
 
 import numpy as np
 from scipy.stats import shapiro, ttest_rel, wilcoxon
@@ -90,17 +90,15 @@ def holm_correction(results: List[Dict[str, object]]) -> List[Dict[str, object]]
     if n == 0:
         return results
 
-    indexed = sorted(enumerate(results), key=lambda iv: float(iv[1]["p"]))
+    indexed = sorted(enumerate(results), key=lambda iv: cast(float, iv[1]["p"]))
     last_adj = 0.0
     for rank, (orig_idx, item) in enumerate(indexed):
-        raw_p = float(item["p"])
+        raw_p = cast(float, item["p"])
         adj = min(raw_p * (n - rank), 1.0)
         adj = max(adj, last_adj)  # monotone
         results[orig_idx]["p_adj"] = round(adj, 6)
         results[orig_idx]["p_adj_fmt"] = _fmt_p(adj)
         results[orig_idx]["Sig_adj"] = "Yes" if adj < 0.05 else "No"
-        results[orig_idx]["Null_Decision_adj"] = (
-            "Rejected" if adj < 0.05 else "Failed to Reject"
-        )
+        results[orig_idx]["Null_Decision_adj"] = "Rejected" if adj < 0.05 else "Failed to Reject"
         last_adj = adj
     return results

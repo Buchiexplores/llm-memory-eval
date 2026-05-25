@@ -26,10 +26,14 @@ from llm_memory_eval.utils.logging import configure_logging, get_logger
 from llm_memory_eval.utils.seed import set_global_seed
 
 
-app = typer.Typer(add_completion=False, no_args_is_help=True, help=(
-    "Reproducible evaluation harness for Summarization-Based Memory vs "
-    "Retrieval-Augmented Generation in long-context LLMs."
-))
+app = typer.Typer(
+    add_completion=False,
+    no_args_is_help=True,
+    help=(
+        "Reproducible evaluation harness for Summarization-Based Memory vs "
+        "Retrieval-Augmented Generation in long-context LLMs."
+    ),
+)
 log = get_logger(__name__)
 
 
@@ -54,8 +58,9 @@ def version() -> None:
 
 @app.command("download-data")
 def download_data(
-    output: Path = typer.Option(Path("data/raw"), "--output", "-o",
-                                help="Directory to write the raw datasets to."),
+    output: Path = typer.Option(
+        Path("data/raw"), "--output", "-o", help="Directory to write the raw datasets to."
+    ),
 ) -> None:
     """Download LongBench, LoCoMo, and LongMemEval from the Hugging Face Hub."""
     from llm_memory_eval.data.download import download_datasets
@@ -77,8 +82,7 @@ def prepare_data(
 @app.command()
 def run(
     config: Path = typer.Option(..., "--config", "-c", exists=True),
-    instances: Path = typer.Option(Path("data/processed/all_instances.json"),
-                                   "--instances", "-i"),
+    instances: Path = typer.Option(Path("data/processed/all_instances.json"), "--instances", "-i"),
     output: Path = typer.Option(Path("results"), "--output", "-o"),
     seed: Optional[int] = typer.Option(None, "--seed"),
 ) -> None:

@@ -26,7 +26,9 @@ def two_way_anova(df: pd.DataFrame, sv: str, rv: str, name: str) -> Dict[str, ob
     """
     rows = []
     for _, r in df.iterrows():
-        rows.append({"strategy": "Summarization", "length": r["length_category"], "value": float(r[sv])})
+        rows.append(
+            {"strategy": "Summarization", "length": r["length_category"], "value": float(r[sv])}
+        )
         rows.append({"strategy": "RAG", "length": r["length_category"], "value": float(r[rv])})
     long = pd.DataFrame(rows)
 
