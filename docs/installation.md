@@ -6,7 +6,7 @@ groups install only the backends and tools you actually need.
 ## From source (recommended for now)
 
 ```bash
-git clone https://github.com/okekeag/llm-memory-eval.git
+git clone https://github.com/Buchiexplores/llm-memory-eval.git
 cd llm-memory-eval
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate

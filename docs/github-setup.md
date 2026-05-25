@@ -29,7 +29,7 @@ In your browser, sign in to GitHub and visit
 
 | Field             | Value                                                  |
 |-------------------|--------------------------------------------------------|
-| Owner             | `okekeag` (or your account / organisation)             |
+| Owner             | `Buchiexplores` (or your account / organisation)       |
 | Repository name   | `llm-memory-eval`                                      |
 | Description       | Reproducible evaluation of Summarization vs RAG memory strategies for LLMs. |
 | Visibility        | Public                                                 |
@@ -42,13 +42,13 @@ Click **Create repository**.
 GitHub will show the exact lines; the standard form is:
 
 ```bash
-git remote add origin https://github.com/okekeag/llm-memory-eval.git
+git remote add origin https://github.com/Buchiexplores/llm-memory-eval.git
 git branch -M main
 git push -u origin main
 ```
 
 If you prefer SSH, replace the URL with
-`git@github.com:okekeag/llm-memory-eval.git`.
+`git@github.com:Buchiexplores/llm-memory-eval.git`.
 
 ## 4. Configure repository defaults
 
@@ -108,13 +108,13 @@ When the manuscript is accepted:
    ```
 
 4. Draft the GitHub release at
-   <https://github.com/okekeag/llm-memory-eval/releases/new>.
+   <https://github.com/Buchiexplores/llm-memory-eval/releases/new>.
 
 ## 6. Archive on Zenodo for a citeable DOI
 
 1. Sign in to <https://zenodo.org/> using your GitHub identity.
 2. Navigate to *Settings → GitHub* and toggle the
-   `okekeag/llm-memory-eval` repository to *On*.
+   `Buchiexplores/llm-memory-eval` repository to *On*.
 3. Back on GitHub, publish the first release (Step 5 above). Zenodo
    automatically archives the source tarball and mints a versioned DOI.
 4. Replace the placeholder in `CITATION.cff`:
@@ -142,7 +142,7 @@ Reference it in a workflow with `${{ secrets.TOGETHER_API_KEY }}`.
 
 In the published article, link to the exact commit you used:
 
-> *Reproduction artefacts:* `https://github.com/okekeag/llm-memory-eval`
+> *Reproduction artefacts:* `https://github.com/Buchiexplores/llm-memory-eval`
 > at commit `<sha>` (Zenodo DOI: `10.5281/zenodo.<id>`).
 
 The commit SHA is captured automatically in

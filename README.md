@@ -1,22 +1,48 @@
 # llm-memory-eval
 
-[![CI](https://github.com/okekeag/llm-memory-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/okekeag/llm-memory-eval/actions/workflows/ci.yml)
+[![CI](https://github.com/Buchiexplores/llm-memory-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/Buchiexplores/llm-memory-eval/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![DOI](https://img.shields.io/badge/DOI-pending%20Zenodo%20release-blue.svg)](https://zenodo.org/)
+
+**Author:** Abuchi Okeke · **Affiliation:** University of the Cumberlands, Williamsburg, Kentucky, USA · **Contact:** okekeag@gmail.com
 
 > Reproducible comparative evaluation of **Summarization-Based Memory** and
 > **Retrieval-Augmented Generation** for long-term conversational
 > performance in large language models, on three long-context benchmarks
 > (LongBench, LoCoMo, LongMemEval).
 
-This is the open-source companion package to the dissertation *A
+This is the open-source companion package to the doctoral dissertation *A
 Comparative Evaluation of Summarization and Retrieval-Augmented Memory
 Strategies for Long-Term Conversational Performance in Large Language
-Models* (Okeke, 2026). It reproduces every quantitative result reported
-in the manuscript and produces the Chapter 4 and Chapter 5 `.docx` files
-that follow the University of the Cumberlands APA 7 quantitative
-dissertation template.
+Models* (Okeke, 2026, University of the Cumberlands). It reproduces every
+quantitative result reported in the manuscript and produces the Chapter 4
+and Chapter 5 `.docx` files that follow the University of the Cumberlands
+APA 7 quantitative dissertation template.
+
+## Abstract
+
+Large language models often forget earlier facts, contradict prior
+statements, and lose user-specific context as conversations extend across
+many turns or multiple sessions. Two memory-augmentation strategies
+dominate the literature on long-term conversational use:
+*Summarization-Based Memory*, which compresses prior dialogue into evolving
+summaries, and *Retrieval-Augmented Generation* (RAG), which stores prior
+content in an external vector index and retrieves relevant passages at
+inference time. Because the two strategies are typically studied in
+isolation, their relative strengths are difficult to assess. This package
+operationalizes a controlled, within-instance, repeated-measures comparison
+of the two strategies on a single base model under matched decoding
+parameters, across three standardized long-context benchmarks. It measures
+recall accuracy, exact match, conversational consistency, contradiction
+rate, response latency, token usage, and memory storage overhead, and tests
+whether conversation length moderates the strategy-outcome relationship. The
+analysis is interpreted through Distributed Cognition Theory (Hutchins,
+1995) and Cognitive Load Theory (Sweller, 1988). All hypotheses, dependent
+variables, statistical tests, and corrections were specified prior to data
+collection; the harness records every deterministic control required for
+independent replication.
 
 ## Highlights
 
@@ -41,7 +67,7 @@ dissertation template.
 ## Quickstart
 
 ```bash
-git clone https://github.com/okekeag/llm-memory-eval.git
+git clone https://github.com/Buchiexplores/llm-memory-eval.git
 cd llm-memory-eval
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[cloud,local,viz]"
@@ -96,8 +122,11 @@ CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
 ├── scripts/                    # reproduce_results.sh, verify_environment.sh
 ├── docker/Dockerfile           # Multi-stage image for cloud runs
 ├── docs/                       # User and developer docs
+├── paper/                      # JOSS submission (paper.md + paper.bib)
 ├── pyproject.toml              # PEP 621 metadata + tool config
-├── CITATION.cff                # Software citation (CFF v1.2.0)
+├── CITATION.cff                # Software + dissertation citation (CFF v1.2.0)
+├── codemeta.json               # CodeMeta 2.0 software metadata
+├── .zenodo.json                # Zenodo archival metadata
 ├── CHANGELOG.md                # Keep-a-Changelog format
 ├── CONTRIBUTING.md             # Setup, tests, scientific-replication rule
 ├── CODE_OF_CONDUCT.md          # Contributor Covenant 2.1 (linked)
@@ -115,16 +144,55 @@ push and pull request.
 
 ## Citing
 
-If this package contributes to your work please cite the dissertation
-and the software release. The machine-readable
-[CITATION.cff](CITATION.cff) file is converted automatically by
-GitHub's "Cite this repository" widget and by Zenodo's DOI registration.
+If this package contributes to your work, please cite **both** the software
+and the associated dissertation. The machine-readable
+[CITATION.cff](CITATION.cff) file is rendered automatically by GitHub's
+"Cite this repository" widget and by Zenodo's DOI registration. A
+[CodeMeta](codemeta.json) descriptor and a [Zenodo metadata](.zenodo.json)
+record are also provided for indexing services.
+
+**Software (APA 7th edition):**
 
 ```text
-Okeke, A. (2026). llm-memory-eval: A reproducible evaluation harness
-for Summarization-Based Memory and Retrieval-Augmented Generation
-(Version 0.1.0) [Computer software]. https://doi.org/10.5281/zenodo.XXXXXXX
+Okeke, A. (2026). llm-memory-eval: A reproducible evaluation harness for
+Summarization-Based Memory and Retrieval-Augmented Generation in large
+language models (Version 0.1.0) [Computer software].
+https://doi.org/10.5281/zenodo.XXXXXXX
 ```
+
+**Software (BibTeX):**
+
+```bibtex
+@software{okeke2026llmmemoryeval,
+  author    = {Okeke, Abuchi},
+  title      = {llm-memory-eval: A Reproducible Evaluation Harness for
+                Summarization-Based Memory and Retrieval-Augmented
+                Generation in Large Language Models},
+  year       = {2026},
+  version    = {0.1.0},
+  publisher  = {Zenodo},
+  doi        = {10.5281/zenodo.XXXXXXX},
+  url        = {https://github.com/Buchiexplores/llm-memory-eval}
+}
+```
+
+**Dissertation (BibTeX):**
+
+```bibtex
+@phdthesis{okeke2026memorystrategies,
+  author      = {Okeke, Abuchi},
+  title       = {A Comparative Evaluation of Summarization and
+                 Retrieval-Augmented Memory Strategies for Long-Term
+                 Conversational Performance in Large Language Models},
+  school      = {University of the Cumberlands},
+  year        = {2026},
+  type        = {Doctoral dissertation},
+  address     = {Williamsburg, Kentucky, USA}
+}
+```
+
+> Replace `10.5281/zenodo.XXXXXXX` with the DOI minted when the first
+> release is archived on Zenodo (see [docs/github-setup.md](docs/github-setup.md)).
 
 ## Licence
 

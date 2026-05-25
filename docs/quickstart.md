@@ -7,7 +7,7 @@ commands. The default flow assumes the manuscript's cloud configuration
 ## 1. Install
 
 ```bash
-git clone https://github.com/okekeag/llm-memory-eval.git
+git clone https://github.com/Buchiexplores/llm-memory-eval.git
 cd llm-memory-eval
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[cloud,local,viz]"

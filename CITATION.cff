@@ -1,34 +1,56 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "If you use this software, please cite both the software (this file) and the associated dissertation listed under preferred-citation."
 type: software
-title: "llm-memory-eval: A Reproducible Evaluation Harness for Summarization-Based Memory and Retrieval-Augmented Generation"
+title: "llm-memory-eval: A Reproducible Evaluation Harness for Summarization-Based Memory and Retrieval-Augmented Generation in Large Language Models"
 version: "0.1.0"
 date-released: 2026-05-21
 authors:
   - family-names: Okeke
     given-names: Abuchi
-    orcid: "https://orcid.org/0000-0000-0000-0000"
+    email: okekeag@gmail.com
+    affiliation: "University of the Cumberlands, Williamsburg, Kentucky, USA"
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: replace with author ORCID iD
 license: MIT
-doi: 10.5281/zenodo.XXXXXXX
-repository-code: "https://github.com/okekeag/llm-memory-eval"
+doi: 10.5281/zenodo.XXXXXXX  # TODO: replace with the Zenodo DOI minted on first release
+repository-code: "https://github.com/Buchiexplores/llm-memory-eval"
+url: "https://github.com/Buchiexplores/llm-memory-eval"
 abstract: >-
   llm-memory-eval is an open-source Python package that operationalizes a
-  comparative repeated-measures evaluation of Summarization-Based Memory
-  (recursive abstractive summarization performed by the base LLM) and
-  Retrieval-Augmented Generation (dense embeddings with FAISS over chunked
-  context) on three long-context benchmarks (LongBench, LoCoMo, and
-  LongMemEval). The harness provides config-driven backends (Ollama,
-  Together AI, AWS Bedrock, Hugging Face Inference Endpoints, and any
-  OpenAI-compatible endpoint), deterministic decoding controls, and a full
-  statistical pipeline (paired t-tests, Wilcoxon, two-way ANOVA with
-  Holm-Bonferroni and simple-effects post-hoc analysis) that reproduces the
-  results reported in the underlying dissertation.
+  comparative, repeated-measures evaluation of Summarization-Based Memory
+  (recursive abstractive summarization performed by the base large language
+  model) and Retrieval-Augmented Generation (dense embeddings with FAISS over
+  chunked context) for long-term conversational performance, on three
+  long-context benchmarks (LongBench, LoCoMo, and LongMemEval). The harness
+  provides config-driven, backend-agnostic inference (Ollama, Together AI, AWS
+  Bedrock, Hugging Face Inference Endpoints, and any OpenAI-compatible
+  endpoint), deterministic decoding controls, and a complete statistical
+  pipeline (paired-samples t-tests with Holm-Bonferroni correction, Wilcoxon
+  signed-rank confirmatory tests, two-way ANOVA on Strategy x Conversation
+  Length with Bonferroni-corrected simple effects, Shapiro-Wilk and Levene
+  assumption diagnostics, Cohen's d, and partial eta-squared) that reproduces
+  the quantitative results reported in the associated doctoral dissertation.
 keywords:
-  - large-language-models
-  - retrieval-augmented-generation
-  - summarization
-  - long-context-evaluation
-  - longbench
-  - locomo
-  - longmemeval
-  - reproducible-research
+  - large language models
+  - retrieval-augmented generation
+  - summarization-based memory
+  - long-context evaluation
+  - long-term conversational memory
+  - LongBench
+  - LoCoMo
+  - LongMemEval
+  - reproducible research
+  - distributed cognition
+  - cognitive load theory
+preferred-citation:
+  type: thesis
+  title: "A Comparative Evaluation of Summarization and Retrieval-Augmented Memory Strategies for Long-Term Conversational Performance in Large Language Models"
+  authors:
+    - family-names: Okeke
+      given-names: Abuchi
+      affiliation: "University of the Cumberlands, Williamsburg, Kentucky, USA"
+      orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: replace with author ORCID iD
+  year: 2026
+  month: 12
+  institution:
+    name: "University of the Cumberlands"
+  thesis-type: "Doctoral dissertation (PhD in Information Technology)"

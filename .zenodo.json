@@ -1,0 +1,36 @@
+{
+  "title": "llm-memory-eval: A Reproducible Evaluation Harness for Summarization-Based Memory and Retrieval-Augmented Generation in Large Language Models",
+  "description": "Open-source Python package operationalizing a controlled, within-instance, repeated-measures comparison of Summarization-Based Memory and Retrieval-Augmented Generation for long-term conversational performance in large language models, evaluated on the LongBench, LoCoMo, and LongMemEval benchmarks. Provides backend-agnostic inference (Ollama, Together AI, AWS Bedrock, Hugging Face Inference Endpoints, OpenAI-compatible), deterministic decoding controls, and a complete statistical pipeline (paired-samples t-tests with Holm-Bonferroni correction, Wilcoxon signed-rank, two-way ANOVA on Strategy x Conversation Length with Bonferroni-corrected simple effects, Shapiro-Wilk and Levene diagnostics, Cohen's d, and partial eta-squared).",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "version": "0.1.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Okeke, Abuchi",
+      "affiliation": "University of the Cumberlands, Williamsburg, Kentucky, USA",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "keywords": [
+    "large language models",
+    "retrieval-augmented generation",
+    "summarization-based memory",
+    "long-context evaluation",
+    "long-term conversational memory",
+    "LongBench",
+    "LoCoMo",
+    "LongMemEval",
+    "reproducible research",
+    "distributed cognition",
+    "cognitive load theory"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Buchiexplores/llm-memory-eval",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

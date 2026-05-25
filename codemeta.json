@@ -1,0 +1,55 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "llm-memory-eval",
+  "name": "llm-memory-eval: A Reproducible Evaluation Harness for Summarization-Based Memory and Retrieval-Augmented Generation in Large Language Models",
+  "description": "Open-source Python package operationalizing a controlled, within-instance, repeated-measures comparison of Summarization-Based Memory and Retrieval-Augmented Generation for long-term conversational performance in large language models, evaluated across the LongBench, LoCoMo, and LongMemEval benchmarks with a complete pre-registered statistical pipeline.",
+  "version": "0.1.0",
+  "dateCreated": "2026-05-21",
+  "datePublished": "2026-05-21",
+  "license": "https://spdx.org/licenses/MIT.html",
+  "codeRepository": "https://github.com/Buchiexplores/llm-memory-eval",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.10+",
+  "operatingSystem": ["Linux", "macOS", "Windows"],
+  "developmentStatus": "active",
+  "keywords": [
+    "large language models",
+    "retrieval-augmented generation",
+    "summarization-based memory",
+    "long-context evaluation",
+    "long-term conversational memory",
+    "reproducible research"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Abuchi",
+      "familyName": "Okeke",
+      "email": "okekeag@gmail.com",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of the Cumberlands, Williamsburg, Kentucky, USA"
+      },
+      "@id": "https://orcid.org/0000-0000-0000-0000"
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Abuchi",
+    "familyName": "Okeke",
+    "email": "okekeag@gmail.com"
+  },
+  "softwareRequirements": [
+    "numpy",
+    "pandas",
+    "scipy",
+    "pydantic",
+    "typer",
+    "tiktoken",
+    "python-docx",
+    "matplotlib",
+    "sentence-transformers",
+    "faiss-cpu"
+  ]
+}

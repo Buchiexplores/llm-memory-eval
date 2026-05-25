@@ -80,10 +80,10 @@ dev = [
 llm-memory-eval = "llm_memory_eval.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/okekeag/llm-memory-eval"
-Repository = "https://github.com/okekeag/llm-memory-eval"
-Documentation = "https://github.com/okekeag/llm-memory-eval/tree/main/docs"
-Issues = "https://github.com/okekeag/llm-memory-eval/issues"
+Homepage = "https://github.com/Buchiexplores/llm-memory-eval"
+Repository = "https://github.com/Buchiexplores/llm-memory-eval"
+Documentation = "https://github.com/Buchiexplores/llm-memory-eval/tree/main/docs"
+Issues = "https://github.com/Buchiexplores/llm-memory-eval/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/llm_memory_eval"]
