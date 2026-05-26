@@ -15,7 +15,6 @@ import requests
 from llm_memory_eval.llm.base import GenerateResponse, LLMClient
 from llm_memory_eval.utils.logging import get_logger
 
-
 log = get_logger(__name__)
 
 

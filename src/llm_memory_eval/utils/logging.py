@@ -5,13 +5,11 @@ from __future__ import annotations
 import logging
 import os
 import sys
-from typing import Optional
-
 
 _CONFIGURED = False
 
 
-def configure_logging(level: Optional[str] = None) -> None:
+def configure_logging(level: str | None = None) -> None:
     """Initialize root logging once.
 
     Parameters

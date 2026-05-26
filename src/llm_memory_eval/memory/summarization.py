@@ -12,7 +12,6 @@ entire document.
 from __future__ import annotations
 
 import time
-from typing import List
 
 import numpy as np
 
@@ -25,7 +24,6 @@ from llm_memory_eval.utils.tokens import (
     encode_tokens,
     truncate_to_tokens,
 )
-
 
 SUMMARY_SYSTEM = (
     "You are a careful conversational memory module. Given prior context "
@@ -46,7 +44,7 @@ class SummarizationMemory(MemoryStrategy):
         self.client = client
         self.cfg = cfg or SummarizationConfig()
 
-    def _chunk(self, text: str) -> List[str]:
+    def _chunk(self, text: str) -> list[str]:
         ids = encode_tokens(text)
         total = len(ids)
         chunk_tokens = self.cfg.chunk_tokens

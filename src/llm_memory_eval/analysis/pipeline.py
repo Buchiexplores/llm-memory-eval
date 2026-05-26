@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 import pandas as pd
 
@@ -17,7 +17,6 @@ from llm_memory_eval.analysis.assumptions import (
 from llm_memory_eval.analysis.descriptive import descriptive_summary
 from llm_memory_eval.analysis.paired import holm_correction, paired_test
 from llm_memory_eval.utils.logging import get_logger
-
 
 log = get_logger(__name__)
 
@@ -59,7 +58,7 @@ def _load_results(results_dir: Path) -> pd.DataFrame:
     return df
 
 
-def run_full_analysis(results_dir: Path) -> Dict[str, Any]:
+def run_full_analysis(results_dir: Path) -> dict[str, Any]:
     """Run the full statistical analysis and write outputs.
 
     Produces:
@@ -77,7 +76,7 @@ def run_full_analysis(results_dir: Path) -> Dict[str, Any]:
     df = _load_results(results_dir)
     log.info("Loaded %d paired instances", len(df))
 
-    analyses: Dict[str, Any] = {}
+    analyses: dict[str, Any] = {}
 
     analyses["descriptive"] = descriptive_summary(df, _RQ1_VARS + _RQ2_VARS)
 
@@ -95,7 +94,7 @@ def run_full_analysis(results_dir: Path) -> Dict[str, Any]:
     rq3 = [two_way_anova(df, sv, rv, name) for sv, rv, name in _RQ3_VARS]
     analyses["rq3"] = rq3
 
-    simple: List[Dict[str, Any]] = []
+    simple: list[dict[str, Any]] = []
     for sv, rv, name in _RQ3_VARS:
         matching = next((r for r in rq3 if r["Variable"] == name), None)
         if matching and matching["Interaction_Sig"] == "Yes":

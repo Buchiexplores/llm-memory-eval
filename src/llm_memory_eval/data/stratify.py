@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import random
 from collections import defaultdict
-from typing import Any, List, Mapping, MutableMapping, Sequence
+from collections.abc import Mapping, MutableMapping, Sequence
+from typing import Any
 
 
 def stratified_subsample(
@@ -14,7 +15,7 @@ def stratified_subsample(
     seed: int = 42,
     length_key: str = "length_category",
     benchmark_key: str = "benchmark",
-) -> List[Mapping[str, Any]]:
+) -> list[Mapping[str, Any]]:
     """Return a stratified subset balanced across length categories.
 
     Within each length category the function spreads picks across the
@@ -26,20 +27,20 @@ def stratified_subsample(
         raise ValueError("per_length must be positive")
 
     rng = random.Random(seed)
-    by_length: MutableMapping[str, List[Mapping[str, Any]]] = defaultdict(list)
+    by_length: MutableMapping[str, list[Mapping[str, Any]]] = defaultdict(list)
     for inst in instances:
         by_length[str(inst[length_key])].append(inst)
 
-    selected: List[Mapping[str, Any]] = []
-    for length, pool in by_length.items():
+    selected: list[Mapping[str, Any]] = []
+    for _length, pool in by_length.items():
         pool_copy = list(pool)
         rng.shuffle(pool_copy)
-        by_bench: MutableMapping[str, List[Mapping[str, Any]]] = defaultdict(list)
+        by_bench: MutableMapping[str, list[Mapping[str, Any]]] = defaultdict(list)
         for item in pool_copy:
             by_bench[str(item[benchmark_key])].append(item)
 
         per_bench = max(1, per_length // max(1, len(by_bench)))
-        chosen: List[Mapping[str, Any]] = []
+        chosen: list[Mapping[str, Any]] = []
         for bench_items in by_bench.values():
             chosen.extend(bench_items[:per_bench])
 

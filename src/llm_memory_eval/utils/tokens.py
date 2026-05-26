@@ -11,7 +11,6 @@ consistent across backends.
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Optional
 
 
 @lru_cache(maxsize=1)
@@ -47,7 +46,7 @@ def decode_tokens(token_ids: list[int]) -> str:
     return _encoding().decode(token_ids)
 
 
-def encode_tokens(text: str, *, max_tokens: Optional[int] = None) -> list[int]:
+def encode_tokens(text: str, *, max_tokens: int | None = None) -> list[int]:
     """Return the token ids for *text*, optionally truncated to *max_tokens*."""
     ids = _encoding().encode(text)
     if max_tokens is not None:

@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
-
 import numpy as np
 import pandas as pd
 from scipy.stats import f as f_dist
 from scipy.stats import ttest_rel
-
 
 _LEVELS = ["short", "medium", "long"]
 _STRATEGIES = ["Summarization", "RAG"]
@@ -18,7 +15,7 @@ def _fmt_p(p: float) -> str:
     return "< .001" if p < 0.001 else f"= {p:.3f}"
 
 
-def two_way_anova(df: pd.DataFrame, sv: str, rv: str, name: str) -> Dict[str, object]:
+def two_way_anova(df: pd.DataFrame, sv: str, rv: str, name: str) -> dict[str, object]:
     """Run a 2 x 3 ANOVA (Strategy x Length) on a single outcome variable.
 
     The data are reshaped into a long-format dataframe so the SS partition
@@ -80,7 +77,7 @@ def two_way_anova(df: pd.DataFrame, sv: str, rv: str, name: str) -> Dict[str, ob
     eta_l = ss_l / (ss_l + ss_w) if (ss_l + ss_w) > 0 else 0.0
     eta_i = ss_int / (ss_int + ss_w) if (ss_int + ss_w) > 0 else 0.0
 
-    cell_stats: Dict[str, object] = {}
+    cell_stats: dict[str, object] = {}
     for s in _STRATEGIES:
         for c in _LEVELS:
             cell = long[(long["strategy"] == s) & (long["length"] == c)]["value"]
@@ -112,9 +109,9 @@ def two_way_anova(df: pd.DataFrame, sv: str, rv: str, name: str) -> Dict[str, ob
     }
 
 
-def simple_effects_tests(df: pd.DataFrame, sv: str, rv: str, name: str) -> List[Dict[str, object]]:
+def simple_effects_tests(df: pd.DataFrame, sv: str, rv: str, name: str) -> list[dict[str, object]]:
     """Bonferroni-corrected simple effects within each length category."""
-    results: List[Dict[str, object]] = []
+    results: list[dict[str, object]] = []
     for cat in _LEVELS:
         mask = df["length_category"] == cat
         summ_vals = df.loc[mask, sv].astype(float).to_numpy()

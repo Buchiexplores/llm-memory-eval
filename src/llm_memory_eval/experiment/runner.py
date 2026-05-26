@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 import csv
-import json
 import subprocess
 import time
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable, List, Optional
 
 from llm_memory_eval import __version__
 from llm_memory_eval.config import ExperimentConfig
@@ -23,7 +22,6 @@ from llm_memory_eval.metrics import (
     contradiction_indicator,
 )
 from llm_memory_eval.utils.logging import get_logger
-
 
 log = get_logger(__name__)
 
@@ -41,7 +39,7 @@ def _answer_prompt(memory_context: str, question: str) -> str:
     return f"Context:\n{memory_context}\n\nQuestion: {question}\n\nAnswer:"
 
 
-def _git_commit() -> Optional[str]:
+def _git_commit() -> str | None:
     try:
         out = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL)
         return out.decode("ascii").strip()
@@ -52,7 +50,7 @@ def _git_commit() -> Optional[str]:
 class ExperimentRunner:
     """Orchestrates per-instance evaluation under both memory strategies."""
 
-    def __init__(self, cfg: ExperimentConfig, client: Optional[LLMClient] = None) -> None:
+    def __init__(self, cfg: ExperimentConfig, client: LLMClient | None = None) -> None:
         self.cfg = cfg
         self.client = client or build_client(cfg.backend)
         self.summ = SummarizationMemory(self.client, cfg.memory.summarization)
@@ -63,9 +61,9 @@ class ExperimentRunner:
         instances: Iterable[dict],
         *,
         results_csv: Path,
-        partial_csv: Optional[Path] = None,
+        partial_csv: Path | None = None,
         checkpoint_every: int = 3,
-    ) -> List[InstanceResult]:
+    ) -> list[InstanceResult]:
         """Run the experiment over *instances*, resuming from a partial CSV if present."""
         results_csv = Path(results_csv)
         partial_csv = (
@@ -76,7 +74,7 @@ class ExperimentRunner:
         results_csv.parent.mkdir(parents=True, exist_ok=True)
 
         completed_ids: set[str] = set()
-        rows: List[InstanceResult] = []
+        rows: list[InstanceResult] = []
 
         if partial_csv.exists():
             with partial_csv.open("r", newline="", encoding="utf-8") as fh:
@@ -123,7 +121,6 @@ class ExperimentRunner:
         question = inst["question"]
         answers = inst.get("all_answers", [inst["answer"]])
         budget = self.cfg.memory.context_budget_tokens
-        cfg_dec = self.cfg.decoding
 
         summ_data = self._safe_strategy(self.summ.process, context, question, budget_tokens=budget)
         summ_ans = self._answer(summ_data.text, question)
@@ -194,7 +191,7 @@ class ExperimentRunner:
 
             return MemoryArtifact(text="", storage_bytes=0, prep_seconds=0.0)
 
-    def _write_rows(self, path: Path, rows: List[InstanceResult]) -> None:
+    def _write_rows(self, path: Path, rows: list[InstanceResult]) -> None:
         if not rows:
             return
         path.parent.mkdir(parents=True, exist_ok=True)

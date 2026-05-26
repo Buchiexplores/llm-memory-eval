@@ -8,11 +8,10 @@ this package; consumers must accept the upstream licences themselves.
 from __future__ import annotations
 
 import json
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 from llm_memory_eval.utils.logging import get_logger
-
 
 log = get_logger(__name__)
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Sequence, Tuple
+from collections.abc import Iterable, Sequence
 
 import numpy as np
 import pandas as pd
@@ -15,10 +15,10 @@ def _fmt_p(p: float) -> str:
 
 def shapiro_normality(
     df: pd.DataFrame,
-    variables: Sequence[Tuple[str, str, str]],
-) -> List[Dict[str, object]]:
+    variables: Sequence[tuple[str, str, str]],
+) -> list[dict[str, object]]:
     """Shapiro-Wilk test on within-instance difference scores."""
-    rows: List[Dict[str, object]] = []
+    rows: list[dict[str, object]] = []
     for sv, rv, name in variables:
         diff = df[rv].astype(float).to_numpy() - df[sv].astype(float).to_numpy()
         try:
@@ -43,10 +43,10 @@ def shapiro_normality(
 
 def levene_test(
     df: pd.DataFrame,
-    variables: Iterable[Tuple[str, str, str]],
-) -> List[Dict[str, object]]:
+    variables: Iterable[tuple[str, str, str]],
+) -> list[dict[str, object]]:
     """Levene's test of homogeneity of variance across strategy conditions."""
-    rows: List[Dict[str, object]] = []
+    rows: list[dict[str, object]] = []
     for sv, rv, name in variables:
         lev_stat, lev_p = levene(df[sv].astype(float), df[rv].astype(float))
         rows.append(
@@ -64,7 +64,7 @@ def levene_test(
 def log_transform_check(
     summ_latency: np.ndarray,
     rag_latency: np.ndarray,
-) -> Dict[str, object]:
+) -> dict[str, object]:
     """Examine whether a natural-log transformation normalises latency differences."""
     summ = np.asarray(summ_latency, dtype=float)
     rag = np.asarray(rag_latency, dtype=float)

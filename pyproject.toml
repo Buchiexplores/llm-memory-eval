@@ -111,6 +111,16 @@ extend-exclude = ["docs", "scripts"]
 select = ["E", "F", "W", "I", "B", "UP", "N", "C4", "SIM"]
 ignore = ["E501"]
 
+[tool.ruff.lint.flake8-bugbear]
+# Typer uses Option()/Argument() as default values, and Path() defaults are
+# intentional CLI defaults; these are not the mutable-default antipattern B008
+# targets.
+extend-immutable-calls = [
+    "typer.Option",
+    "typer.Argument",
+    "pathlib.Path",
+]
+
 [tool.black]
 line-length = 99
 target-version = ["py310", "py311", "py312"]

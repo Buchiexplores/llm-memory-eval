@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Sequence, Tuple
+from collections.abc import Sequence
 
 import numpy as np
 import pandas as pd
@@ -10,8 +10,8 @@ import pandas as pd
 
 def descriptive_summary(
     df: pd.DataFrame,
-    variables: Sequence[Tuple[str, str, str]],
-) -> List[Dict[str, float | str]]:
+    variables: Sequence[tuple[str, str, str]],
+) -> list[dict[str, float | str]]:
     """Return descriptive statistics for paired Summarization vs RAG variables.
 
     Parameters
@@ -21,7 +21,7 @@ def descriptive_summary(
     variables
         Iterable of ``(summ_column, rag_column, display_name)`` tuples.
     """
-    rows: List[Dict[str, float | str]] = []
+    rows: list[dict[str, float | str]] = []
     for sv, rv, name in variables:
         s = df[sv].astype(float)
         r = df[rv].astype(float)

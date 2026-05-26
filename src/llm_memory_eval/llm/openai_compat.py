@@ -10,11 +10,10 @@ from __future__ import annotations
 
 import os
 import time
-from typing import Any, Optional
+from typing import Any
 
 from llm_memory_eval.llm.base import GenerateResponse, LLMClient
 from llm_memory_eval.utils.logging import get_logger
-
 
 log = get_logger(__name__)
 
@@ -65,7 +64,7 @@ class OpenAICompatibleClient(LLMClient):
         top_p: float,
         seed: int,
     ) -> GenerateResponse:
-        last_err: Optional[Exception] = None
+        last_err: Exception | None = None
         for attempt in range(self.max_retries):
             try:
                 t0 = time.perf_counter()

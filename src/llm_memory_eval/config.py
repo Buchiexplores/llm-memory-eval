@@ -11,11 +11,10 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Any, Literal, Optional
+from typing import Any, Literal
 
 import yaml
-from pydantic import BaseModel, Field, field_validator
-
+from pydantic import BaseModel, field_validator
 
 BackendName = Literal["ollama", "together", "openai_compat", "bedrock", "hf_endpoint"]
 
@@ -25,9 +24,9 @@ class BackendConfig(BaseModel):
 
     name: BackendName = "ollama"
     model: str = "llama3.1:8b"
-    base_url: Optional[str] = None
-    api_key_env: Optional[str] = None
-    region: Optional[str] = None
+    base_url: str | None = None
+    api_key_env: str | None = None
+    region: str | None = None
     keep_alive: str = "30m"
     request_timeout_seconds: int = 600
     max_retries: int = 3
@@ -109,7 +108,7 @@ class ExperimentConfig(BaseModel):
         return v
 
     @classmethod
-    def from_yaml(cls, path: Path | str) -> "ExperimentConfig":
+    def from_yaml(cls, path: Path | str) -> ExperimentConfig:
         """Load configuration from a YAML file and apply environment overrides."""
         path = Path(path)
         with path.open("r", encoding="utf-8") as fh:

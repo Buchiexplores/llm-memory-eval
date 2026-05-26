@@ -18,7 +18,6 @@ import pandas as pd
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-
 _COLOR_SUMM = "#3A86FF"
 _COLOR_RAG = "#FF6B6B"
 _COLOR_SUMM_DARK = "#2563EB"
@@ -128,7 +127,10 @@ def _figure_rq1(analyses, fig_dir: Path) -> None:
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylabel("Mean Score", fontweight="bold")
-    top = max(max(s + e for s, e in zip(summ, summ_sd)), max(r + e for r, e in zip(rag, rag_sd)))
+    top = max(
+        max(s + e for s, e in zip(summ, summ_sd, strict=False)),
+        max(r + e for r, e in zip(rag, rag_sd, strict=False)),
+    )
     ax.set_ylim(0, max(0.05, top) * 1.2)
     for i, r in enumerate(rq1):
         ax.text(
@@ -216,10 +218,10 @@ def _boxplot(ax, data, *, title, ylabel, marker) -> None:
         tick_labels=["Summarization", "RAG"],
         patch_artist=True,
         widths=0.5,
-        medianprops=dict(color="white", linewidth=2),
-        flierprops=dict(marker="o", markersize=3, markerfacecolor="#888888", alpha=0.4),
-        whiskerprops=dict(linewidth=1.2),
-        capprops=dict(linewidth=1.2),
+        medianprops={"color": "white", "linewidth": 2},
+        flierprops={"marker": "o", "markersize": 3, "markerfacecolor": "#888888", "alpha": 0.4},
+        whiskerprops={"linewidth": 1.2},
+        capprops={"linewidth": 1.2},
     )
     bp["boxes"][0].set(facecolor=_COLOR_SUMM, alpha=0.8)
     bp["boxes"][1].set(facecolor=_COLOR_RAG, alpha=0.8)
@@ -277,7 +279,10 @@ def _figure_rq3_interaction(analyses, fig_dir: Path, *, index: int, key: str, yl
     ax.set_xlabel("Conversation Length Category", fontweight="bold")
     ax.set_ylabel(ylabel, fontweight="bold")
     ax.legend(loc="upper right")
-    top = max(max(m + s for m, s in zip(summ, summ_sd)), max(m + s for m, s in zip(rag, rag_sd)))
+    top = max(
+        max(m + s for m, s in zip(summ, summ_sd, strict=False)),
+        max(m + s for m, s in zip(rag, rag_sd, strict=False)),
+    )
     ax.set_ylim(0, max(0.05, top) * 1.15)
     plt.tight_layout()
     plt.savefig(fig_dir / f"figure3_rq3_{key}.png")
@@ -338,7 +343,7 @@ def _figure_rq3_storage(analyses, fig_dir: Path) -> None:
         fontstyle="italic",
         color=_COLOR_RAG_DARK,
         fontweight="bold",
-        arrowprops=dict(arrowstyle="->", color=_COLOR_RAG_DARK, lw=1.5),
+        arrowprops={"arrowstyle": "->", "color": _COLOR_RAG_DARK, "lw": 1.5},
     )
     plt.tight_layout()
     plt.savefig(fig_dir / "figure4_rq3_storage_interaction.png")
@@ -395,7 +400,10 @@ def _figure_benchmark(analyses, fig_dir: Path) -> None:
     ax.set_ylabel("Mean Recall Accuracy (F1)", fontweight="bold")
     ax.set_xticks(x)
     ax.set_xticklabels(names, fontweight="bold")
-    top = max(max(s + e for s, e in zip(summ, summ_sd)), max(r + e for r, e in zip(rag, rag_sd)))
+    top = max(
+        max(s + e for s, e in zip(summ, summ_sd, strict=False)),
+        max(r + e for r, e in zip(rag, rag_sd, strict=False)),
+    )
     ax.set_ylim(0, max(0.05, top) * 1.15)
     ax.legend(loc="upper right")
     plt.tight_layout()

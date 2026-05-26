@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -71,5 +69,5 @@ class RunMetadata(BaseModel):
     contradiction_f1_threshold: float
     total_instances: int
     timestamp: str
-    commit: Optional[str] = Field(default=None, description="git commit SHA if available")
+    commit: str | None = Field(default=None, description="git commit SHA if available")
     package_version: str = ""

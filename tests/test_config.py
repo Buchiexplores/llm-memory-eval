@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError
 
 from llm_memory_eval.config import ExperimentConfig
 
@@ -50,5 +51,5 @@ decoding:
         assert cfg.decoding.seed == 1234
 
     def test_project_name_rejects_whitespace(self) -> None:
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             ExperimentConfig(project_name="bad name")

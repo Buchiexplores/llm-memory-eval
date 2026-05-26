@@ -10,7 +10,6 @@ from __future__ import annotations
 
 from llm_memory_eval.llm.openai_compat import OpenAICompatibleClient
 
-
 TOGETHER_BASE_URL = "https://api.together.xyz/v1"
 DEFAULT_TOGETHER_MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo"
 

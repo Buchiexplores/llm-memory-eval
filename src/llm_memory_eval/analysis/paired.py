@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, cast
+from typing import cast
 
 import numpy as np
 from scipy.stats import shapiro, ttest_rel, wilcoxon
@@ -18,7 +18,7 @@ def paired_test(
     summ_values: np.ndarray,
     rag_values: np.ndarray,
     name: str,
-) -> Dict[str, object]:
+) -> dict[str, object]:
     """Run the paired t-test and Wilcoxon signed-rank confirmatory test.
 
     Returns a result dict with means, SDs, t-statistic, exact p-values,
@@ -80,7 +80,7 @@ def paired_test(
     }
 
 
-def holm_correction(results: List[Dict[str, object]]) -> List[Dict[str, object]]:
+def holm_correction(results: list[dict[str, object]]) -> list[dict[str, object]]:
     """Apply Holm-Bonferroni correction to a family of paired tests.
 
     Adds ``p_adj``, ``p_adj_fmt``, ``Sig_adj``, and ``Null_Decision_adj``

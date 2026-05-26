@@ -8,10 +8,9 @@ are configurable via :class:`~llm_memory_eval.config.MetricsConfig`.
 from __future__ import annotations
 
 import re
-from typing import Sequence
+from collections.abc import Sequence
 
 from llm_memory_eval.metrics.text import best_em, best_f1
-
 
 _ABSTENTION_PATTERNS = [
     r"\bunknown\b",

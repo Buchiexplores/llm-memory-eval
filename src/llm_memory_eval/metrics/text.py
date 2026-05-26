@@ -10,8 +10,7 @@ from __future__ import annotations
 import re
 import string
 from collections import Counter
-from typing import Sequence
-
+from collections.abc import Sequence
 
 _ARTICLES = re.compile(r"\b(a|an|the)\b")
 

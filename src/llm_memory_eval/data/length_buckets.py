@@ -8,8 +8,7 @@ multi-session dialogue.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Literal, Optional
-
+from typing import Literal
 
 LengthBucket = Literal["short", "medium", "long"]
 
@@ -35,9 +34,9 @@ LOCOMO_DEFAULTS = LoCoMoThresholds()
 def assign_length_bucket(
     *,
     benchmark: str,
-    token_count: Optional[int] = None,
-    session_count: Optional[int] = None,
-    turn_count: Optional[int] = None,
+    token_count: int | None = None,
+    session_count: int | None = None,
+    turn_count: int | None = None,
     token_thresholds: TokenThresholds = TOKEN_DEFAULTS,
     locomo_thresholds: LoCoMoThresholds = LOCOMO_DEFAULTS,
 ) -> LengthBucket:
@@ -73,9 +72,9 @@ def assign_length_bucket(
 
 
 def _locomo_session_bucket(
-    session_count: Optional[int],
+    session_count: int | None,
     thresholds: LoCoMoThresholds,
-) -> Optional[LengthBucket]:
+) -> LengthBucket | None:
     if session_count is None:
         return None
     if session_count <= thresholds.short_max_sessions:
@@ -86,9 +85,9 @@ def _locomo_session_bucket(
 
 
 def _locomo_turn_bucket(
-    turn_count: Optional[int],
+    turn_count: int | None,
     thresholds: LoCoMoThresholds,
-) -> Optional[LengthBucket]:
+) -> LengthBucket | None:
     if turn_count is None:
         return None
     if turn_count <= thresholds.short_max_turns:
@@ -102,8 +101,8 @@ _ORDER = {"short": 0, "medium": 1, "long": 2}
 
 
 def _max_bucket(
-    a: Optional[LengthBucket],
-    b: Optional[LengthBucket],
+    a: LengthBucket | None,
+    b: LengthBucket | None,
 ) -> LengthBucket:
     if a is None and b is None:
         raise ValueError("at least one bucket must be supplied")

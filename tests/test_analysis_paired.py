@@ -57,7 +57,7 @@ class TestHolmCorrection:
         adjusted = holm_correction(results)
         adj_vals = [r["p_adj"] for r in adjusted]
         # Sorted by raw p, adjusted p should be non-decreasing
-        sorted_pairs = sorted(zip([r["p"] for r in results], adj_vals))
+        sorted_pairs = sorted(zip([r["p"] for r in results], adj_vals, strict=False))
         sorted_adj = [a for _, a in sorted_pairs]
         for i in range(1, len(sorted_adj)):
             assert sorted_adj[i] >= sorted_adj[i - 1]

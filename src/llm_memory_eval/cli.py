@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional
 
 import typer
 
@@ -24,7 +23,6 @@ from llm_memory_eval import __version__
 from llm_memory_eval.config import ExperimentConfig
 from llm_memory_eval.utils.logging import configure_logging, get_logger
 from llm_memory_eval.utils.seed import set_global_seed
-
 
 app = typer.Typer(
     add_completion=False,
@@ -37,7 +35,7 @@ app = typer.Typer(
 log = get_logger(__name__)
 
 
-def _load_cfg(config_path: Optional[Path]) -> ExperimentConfig:
+def _load_cfg(config_path: Path | None) -> ExperimentConfig:
     if config_path is None:
         config_path = Path("configs/default.yaml")
     return ExperimentConfig.from_yaml(config_path)
@@ -84,7 +82,7 @@ def run(
     config: Path = typer.Option(..., "--config", "-c", exists=True),
     instances: Path = typer.Option(Path("data/processed/all_instances.json"), "--instances", "-i"),
     output: Path = typer.Option(Path("results"), "--output", "-o"),
-    seed: Optional[int] = typer.Option(None, "--seed"),
+    seed: int | None = typer.Option(None, "--seed"),
 ) -> None:
     """Run the experiment over every prepared benchmark instance."""
     cfg = _load_cfg(config)

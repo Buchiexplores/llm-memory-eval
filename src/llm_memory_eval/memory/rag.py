@@ -10,7 +10,6 @@ configured token budget.
 from __future__ import annotations
 
 import time
-from typing import List
 
 import numpy as np
 
@@ -18,7 +17,6 @@ from llm_memory_eval.config import RagConfig
 from llm_memory_eval.memory.base import MemoryArtifact, MemoryStrategy
 from llm_memory_eval.utils.logging import get_logger
 from llm_memory_eval.utils.tokens import count_tokens, truncate_to_tokens
-
 
 log = get_logger(__name__)
 
@@ -51,9 +49,9 @@ class RagMemory(MemoryStrategy):
         log.info("Loading embedding model %s on device=%s", self.cfg.embedding_model, device)
         self.model = SentenceTransformer(self.cfg.embedding_model, device=device)
 
-    def _chunk(self, text: str) -> List[str]:
+    def _chunk(self, text: str) -> list[str]:
         words = text.split()
-        chunks: List[str] = []
+        chunks: list[str] = []
         step = self.cfg.chunk_size_words - self.cfg.chunk_overlap_words
         if step <= 0:
             raise ValueError("chunk_size_words must exceed chunk_overlap_words")
@@ -108,7 +106,7 @@ class RagMemory(MemoryStrategy):
         k = min(self.cfg.top_k * 2, len(chunks))
         _, idxs = index.search(query_embedding, k)
 
-        retrieved: List[str] = []
+        retrieved: list[str] = []
         tok_count = 0
         for i in idxs[0]:
             if i < 0 or i >= len(chunks):
