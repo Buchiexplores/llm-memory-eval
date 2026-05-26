@@ -34,6 +34,27 @@ class TestNormalize:
     def test_empty_input(self) -> None:
         assert normalize("") == ""
 
+    def test_integer_input_is_coerced(self) -> None:
+        # Benchmark reference answers are sometimes ints (e.g. a year).
+        assert normalize(2022) == "2022"
+
+    def test_float_input_is_coerced(self) -> None:
+        assert normalize(3.5) == "35"
+
+    def test_none_input(self) -> None:
+        assert normalize(None) == ""
+
+
+class TestNonStringReferences:
+    def test_f1_with_integer_reference(self) -> None:
+        assert compute_f1("the answer is 2022", 2022) > 0.0
+
+    def test_em_with_integer_reference(self) -> None:
+        assert compute_em("2022", 2022) == 1.0
+
+    def test_best_f1_with_mixed_reference_types(self) -> None:
+        assert best_f1("2022", [2022, "something else"]) == 1.0
+
 
 class TestF1:
     def test_identical(self) -> None:

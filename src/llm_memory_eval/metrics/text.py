@@ -16,8 +16,17 @@ from typing import Sequence
 _ARTICLES = re.compile(r"\b(a|an|the)\b")
 
 
-def normalize(text: str) -> str:
-    """Apply SQuAD-style answer normalisation."""
+def normalize(text: object) -> str:
+    """Apply SQuAD-style answer normalisation.
+
+    Coerces non-string inputs (for example, benchmark reference answers that
+    are integers or floats, such as a year) to their string form before
+    normalising, so the metric is robust to mixed-type benchmark labels.
+    """
+    if text is None:
+        return ""
+    if not isinstance(text, str):
+        text = str(text)
     if not text:
         return ""
     lowered = text.lower()
