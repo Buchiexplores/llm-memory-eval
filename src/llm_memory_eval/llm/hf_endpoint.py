@@ -29,11 +29,12 @@ class HFEndpointClient(LLMClient):
         request_timeout_seconds: int = 600,
         max_retries: int = 3,
     ) -> None:
-        self.endpoint_url = endpoint_url or os.environ.get("HF_ENDPOINT_URL")
-        if not self.endpoint_url:
+        resolved_url = endpoint_url or os.environ.get("HF_ENDPOINT_URL")
+        if not resolved_url:
             raise RuntimeError(
                 "HF_ENDPOINT_URL is not set; provide it explicitly or via the environment."
             )
+        self.endpoint_url: str = resolved_url
         token = os.environ.get(token_env)
         if not token:
             raise RuntimeError(f"Environment variable {token_env} is not set.")
