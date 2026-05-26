@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class InstanceResult(BaseModel):
@@ -20,6 +20,14 @@ class InstanceResult(BaseModel):
     context_tokens: int
     length_category: str
     ground_truth: str
+
+    @field_validator("ground_truth", "summ_answer", "rag_answer", mode="before")
+    @classmethod
+    def _coerce_text(cls, value: object) -> str:
+        """Coerce non-string benchmark answers (e.g. an integer year) to str."""
+        if value is None:
+            return ""
+        return value if isinstance(value, str) else str(value)
 
     summ_answer: str = ""
     summ_f1: float = 0.0
