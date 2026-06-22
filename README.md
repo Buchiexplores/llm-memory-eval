@@ -198,8 +198,21 @@ MIT - see [LICENSE](LICENSE). The benchmark datasets retrieved by
 `llm-memory-eval download-data` retain their upstream licences; this
 package only redistributes evaluation code, not data.
 
+## Dissertation Committee
+
+This research was conducted as a doctoral dissertation in Information
+Technology at the University of the Cumberlands, under the guidance of:
+
+| Role               | Member                    |
+|--------------------|---------------------------|
+| Dissertation Chair | Dr. Maurice Eugene Dawson |
+| Committee Member   | Dr. Timothy McGee         |
+| Committee Member   | Dr. Alan Dennis           |
+
 ## Acknowledgements
 
-This work builds on the LongBench, LoCoMo, and LongMemEval benchmarks
-and on the broader literature on memory-augmented language models cited
-in [docs/methodology.md](docs/methodology.md).
+The author thanks the dissertation committee at the University of the
+Cumberlands for their guidance. This work builds on the LongBench, LoCoMo,
+and LongMemEval benchmarks and on the broader literature on
+memory-augmented language models cited in
+[docs/methodology.md](docs/methodology.md).
