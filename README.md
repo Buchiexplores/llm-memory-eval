@@ -6,7 +6,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![DOI](https://img.shields.io/badge/DOI-pending%20Zenodo%20release-blue.svg)](https://zenodo.org/)
 
-**Author:** Abuchi Okeke · **Affiliation:** University of the Cumberlands, Williamsburg, Kentucky, USA · **Contact:** okekeag@gmail.com
+**Author:** Abuchi Okeke · **Affiliation:** University of the Cumberlands, Williamsburg, Kentucky, USA · **Contact:** okekeag@gmail.com, aokeke13232@ucumberlands.edu
 
 > Reproducible comparative evaluation of **Summarization-Based Memory** and
 > **Retrieval-Augmented Generation** for long-term conversational
