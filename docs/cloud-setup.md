@@ -1,7 +1,7 @@
 # Cloud setup
 
-This guide walks through the reference cloud deployment: Meta Llama 3.1
-70B Instruct served from Together AI. Alternative cloud backends (AWS
+This guide walks through the reference cloud deployment: Meta Llama 3.3
+70B Instruct Turbo served from Together AI. Alternative cloud backends (AWS
 Bedrock, Hugging Face Inference Endpoints, self-hosted vLLM) are
 documented at the end for reviewers who require them.
 
@@ -11,9 +11,9 @@ experiment runner, statistical pipeline, and figures stay identical.
 
 ## Why Together AI is appropriate for US academic research
 
-- The model itself — Meta **Llama 3.1 70B Instruct** — is open-weights
-  and version-pinnable. Reviewers can verify that the weights are
-  identical to those Meta publishes on Hugging Face.
+- The model itself — Meta **Llama 3.3 70B Instruct** — is open-weights
+  and version-pinnable; Together AI's Turbo build is an optimized serving of
+  these open weights under a stable, pinned model identifier.
 - Together AI publishes its inference configuration (quantisation,
   batching, attention implementation) and exposes a `seed` argument
   through the OpenAI-compatible Chat Completions API, which delivers
@@ -23,9 +23,10 @@ experiment runner, statistical pipeline, and figures stay identical.
   way OpenAI and Anthropic APIs are treated: a managed inference
   service whose model identifier, version, and decoding parameters
   must be reported in the methods section.
-- The University of the Cumberlands IRB exemption you already hold for
-  publicly available, deidentified benchmark datasets covers this
-  arrangement; no human-subjects data leaves your machine.
+- The University of the Cumberlands Institutional Review Board's
+  non-human-subjects determination for this study (publicly available,
+  deidentified benchmark datasets) covers this arrangement; no human-subjects
+  data leaves your machine.
 - If a reviewer pushes back specifically on Together AI, swap to the
   AWS Bedrock backend (same model family, enterprise-managed) using the
   one-line config change documented later in this file.
@@ -131,7 +132,7 @@ if you adjust the configuration to N > 200.
 
 ### 7. Cost estimation
 
-| Item                              | Typical magnitude (Llama 3.1 70B)        |
+| Item                              | Typical magnitude (Llama 3.3 70B Turbo)        |
 |-----------------------------------|-------------------------------------------|
 | Input tokens per instance         | ~6,000-12,000 (summarization + answer)    |
 | Output tokens per instance        | ~600-1,000                                |

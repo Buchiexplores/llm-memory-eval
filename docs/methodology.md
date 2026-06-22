@@ -75,8 +75,11 @@ LoCoMo (the broader of the two assignments wins). See
 - Bonferroni-corrected simple effects within each length category for
   any outcome whose interaction term is significant.
 - Shapiro-Wilk normality and Levene homogeneity-of-variance diagnostics.
-- Natural-log transformation of response latency followed by Welch's
-  one-way analysis as a robustness check.
+- Natural-log transformation of response latency as a robustness check;
+  the transformed difference scores are re-tested with a paired *t*-test if
+  the transformation restores normality, otherwise the Wilcoxon signed-rank
+  result is retained (in the reported run the transformation did not restore
+  normality, so the Wilcoxon result was retained).
 - Effect sizes: Cohen's *d* for paired designs, partial η² for ANOVA.
 
 ## Theoretical framework

@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial open-source release accompanying the dissertation
-  *Summarization-Based Memory vs. Retrieval-Augmented Generation for Long-Term
-  Conversational Performance in LLMs*.
+  *A Comparative Evaluation of Summarization and Retrieval-Augmented Memory
+  Strategies for Long-Term Conversational Performance in Large Language Models*.
 - `LLMClient` abstraction with backends for Ollama, Together AI, generic
   OpenAI-compatible endpoints, AWS Bedrock, and Hugging Face Inference
   Endpoints.
@@ -18,8 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   RAG (intfloat/e5-large-v2 + FAISS inner-product index).
 - Deterministic experiment runner with per-instance checkpointing.
 - Statistical pipeline: descriptive statistics, paired-samples t-tests with
-  Holm-Bonferroni correction, Wilcoxon signed-rank fallback, 2x3 rmANOVA on
-  Strategy x Length, Shapiro-Wilk normality, Levene homogeneity-of-variance,
+  Holm-Bonferroni correction, Wilcoxon signed-rank fallback, 2 × 3 ANOVA on
+  Strategy × Length, Shapiro-Wilk normality, Levene homogeneity-of-variance,
   Bonferroni-corrected simple-effects post-hoc tests, and Cohen's d / partial
   eta-squared effect sizes.
 - Publication-quality matplotlib figures rendered from the recorded results.
