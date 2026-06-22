@@ -3,7 +3,7 @@
 Configurations select the LLM backend, the embedding model, decoding
 parameters, memory-strategy hyperparameters, and statistical-analysis
 options. Environment variables with the prefix ``LLM_MEMORY_EVAL_`` override
-the YAML values, which makes it easy to switch between local pilot and
+the YAML values, which makes it easy to switch between local development and
 cloud production runs without editing files.
 """
 

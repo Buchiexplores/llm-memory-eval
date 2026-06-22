@@ -12,7 +12,7 @@ to verify that a re-run on your machine matches the published numbers.
 | `PYTHONHASHSEED`                     | set by `set_global_seed`                     |
 | LLM decoding temperature             | 0.0 (greedy)                                 |
 | LLM decoding top-p                   | 1.0                                          |
-| LLM decoding `max_tokens`            | 512 (cloud) / 256 (pilot)                    |
+| LLM decoding `max_tokens`            | 512 (cloud) / 256 (local development)                    |
 | Cloud LLM `seed` argument            | passed via Together AI Chat Completions API  |
 | Embedding model                      | `intfloat/e5-large-v2`                       |
 | Embedding L2 normalisation           | always enabled                               |

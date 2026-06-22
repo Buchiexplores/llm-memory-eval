@@ -1,4 +1,4 @@
-# Default configuration: local pilot with Ollama + Llama 3.1 8B.
+# Default configuration: local development with Ollama + Llama 3.1 8B.
 # For production runs that match the manuscript, use cloud-production.yaml.
 
 project_name: "llm-memory-eval"

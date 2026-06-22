@@ -49,16 +49,16 @@ After the pipeline finishes you will have:
 - `results/tables/*.csv` — descriptive and inferential result tables.
 - `results/figures/*.png` — publication-quality figures.
 
-## 5. Pilot first (recommended)
+## 5. Smoke-test locally first (recommended)
 
 To validate the pipeline locally before paying for the cloud run, swap
 the config:
 
 ```bash
 ollama pull llama3.1:8b
-llm-memory-eval run --config configs/local-pilot.yaml
+llm-memory-eval run --config configs/local-dev.yaml
 ```
 
-A laptop pilot at N = 90 typically completes in 2-3 hours; the cloud run
+A local development run at N = 90 typically completes in 2-3 hours; the cloud run
 at N = 90 completes in well under one hour and costs a few US dollars on
 Together AI.

@@ -1,6 +1,6 @@
 """Local Ollama backend.
 
-Suitable for pilot evaluation on a laptop or workstation with a smaller
+Suitable for local evaluation on a laptop or workstation with a smaller
 Llama model. For production runs, use a cloud backend serving the larger
 target model (for example, ``Llama 3.1 70B Instruct``).
 """

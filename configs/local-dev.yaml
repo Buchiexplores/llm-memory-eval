@@ -1,4 +1,4 @@
-# Local pilot configuration for Mac/Linux workstations.
+# Local development configuration for Mac/Linux workstations.
 # Uses Ollama with Llama 3.1 8B - explicitly permitted by Chapter 3 for
 # local development before the cloud production run.
 

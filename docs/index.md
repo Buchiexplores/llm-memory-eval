@@ -6,7 +6,7 @@ controlled, reproducible conditions.
 
 It implements:
 
-- A backend-agnostic LLM client (Ollama for local pilots; Together AI,
+- A backend-agnostic LLM client (Ollama for local development; Together AI,
   AWS Bedrock, Hugging Face Inference Endpoints, or any
   OpenAI-compatible endpoint for production).
 - Two memory strategies under comparison: recursive abstractive

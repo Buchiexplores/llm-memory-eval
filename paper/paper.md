@@ -63,7 +63,7 @@ this gap with four design commitments:
    local inference via Ollama and cloud inference via Together AI, AWS
    Bedrock, Hugging Face Inference Endpoints, and any OpenAI-compatible
    endpoint. Switching backends requires changing one configuration
-   field, which lets a laptop pilot and a cloud production run share
+   field, which lets a local development run and a cloud production run share
    identical analysis code.
 
 3. **Pre-registered statistics.** The analysis module implements the

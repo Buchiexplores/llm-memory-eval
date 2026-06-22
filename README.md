@@ -46,7 +46,7 @@ independent replication.
 ## Highlights
 
 - **Backend-agnostic LLM interface.** One configuration file selects
-  Ollama (local pilot), Together AI (default cloud), AWS Bedrock,
+  Ollama (local development), Together AI (default cloud), AWS Bedrock,
   Hugging Face Inference Endpoints, or any OpenAI-compatible endpoint.
 - **Controlled, deterministic pipeline.** Greedy decoding, `seed = 42`,
   `intfloat/e5-large-v2` embeddings, FAISS inner-product retrieval, and
@@ -80,12 +80,12 @@ The script runs the full pipeline: download benchmarks, prepare
 instances, evaluate both strategies, run the statistical analyses, and
 render figures.
 
-A local laptop pilot is supported with the same command and a different
+A local development run is supported with the same command and a different
 config:
 
 ```bash
 ollama pull llama3.1:8b
-CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
+CONFIG=configs/local-dev.yaml scripts/reproduce_results.sh
 ```
 
 ## Documentation
@@ -116,7 +116,7 @@ CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
 │   ├── reporting/              # Publication-quality figures
 │   └── utils/                  # Logging, seeding, token counting
 ├── tests/                      # Pytest suite (deterministic, no live API calls)
-├── configs/                    # default / local-pilot / cloud-production YAMLs
+├── configs/                    # default / local-dev / cloud-production YAMLs
 ├── scripts/                    # reproduce_results.sh, verify_environment.sh
 ├── docker/Dockerfile           # Multi-stage image for cloud runs
 ├── docs/                       # User and developer docs

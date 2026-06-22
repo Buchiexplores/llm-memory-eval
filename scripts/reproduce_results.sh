@@ -3,7 +3,7 @@
 #
 # Usage:
 #   scripts/reproduce_results.sh                  # cloud production run
-#   CONFIG=configs/local-pilot.yaml scripts/reproduce_results.sh
+#   CONFIG=configs/local-dev.yaml scripts/reproduce_results.sh
 #
 # Required environment for the cloud run:
 #   TOGETHER_API_KEY=<your Together AI key>
