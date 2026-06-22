@@ -110,6 +110,7 @@ and serialized memory-storage overhead.
 This software builds on the LongBench, LoCoMo, and LongMemEval benchmarks
 and on the open-source `sentence-transformers`, FAISS, SciPy, pandas, and
 NumPy ecosystems. The author thanks the dissertation committee at the
-University of the Cumberlands for their guidance.
+University of the Cumberlands — Dr. Maurice Eugene Dawson (chair),
+Dr. Timothy McGee, and Dr. Alan Dennis — for their guidance.
 
 # References
