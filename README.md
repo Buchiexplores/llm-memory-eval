@@ -203,11 +203,11 @@ package only redistributes evaluation code, not data.
 This research was conducted as a doctoral dissertation in Information
 Technology at the University of the Cumberlands, under the guidance of:
 
-| Role               | Member                    |
-|--------------------|---------------------------|
-| Dissertation Chair | Dr. Maurice Eugene Dawson |
-| Committee Member   | Dr. Timothy McGee         |
-| Committee Member   | Dr. Alan Dennis           |
+| Role               | Member                    | Email                            |
+|--------------------|---------------------------|----------------------------------|
+| Dissertation Chair | Dr. Maurice Eugene Dawson | maurice.dawson@ucumberlands.edu  |
+| Committee Member   | Dr. Timothy McGee         | timothy.mcgee@ucumberlands.edu   |
+| Committee Member   | Dr. Alan Dennis           | alan.dennis@ucumberlands.edu     |
 
 ## Acknowledgements
 
