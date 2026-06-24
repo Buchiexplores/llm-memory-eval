@@ -88,6 +88,38 @@ ollama pull llama3.1:8b
 CONFIG=configs/local-dev.yaml scripts/reproduce_results.sh
 ```
 
+## Benchmark datasets
+
+This study evaluates both memory strategies on three standardized,
+publicly available long-context benchmarks. The datasets are **not
+redistributed** with this package; `llm-memory-eval download-data`
+retrieves each one directly from its canonical Hugging Face Hub location
+(via the `datasets` library). Users must review and accept each dataset's
+upstream licence before use.
+
+| Benchmark | Source (Hugging Face Hub) | Upstream licence | Primary reference |
+|-----------|---------------------------|------------------|-------------------|
+| **LongBench** | [`THUDM/LongBench`](https://huggingface.co/datasets/THUDM/LongBench) · [code](https://github.com/THUDM/LongBench) | MIT | Bai et al. (2024), *ACL 2024.* https://doi.org/10.18653/v1/2024.acl-long.172 |
+| **LoCoMo** | [`snap-research/locomo`](https://huggingface.co/datasets/snap-research/locomo) · [project](https://snap-research.github.io/locomo/) | Apache-2.0 | Maharana et al. (2024), *ACL 2024.* https://doi.org/10.18653/v1/2024.acl-long.747 |
+| **LongMemEval** | [`xiaowu0162/LongMemEval`](https://huggingface.co/datasets/xiaowu0162/LongMemEval) · [code](https://github.com/xiaowu0162/LongMemEval) | Apache-2.0 | Wu et al. (2025), *ICLR 2025.* https://openreview.net/forum?id=pZiyCaVuti |
+
+Download them with:
+
+```bash
+llm-memory-eval download-data        # default: data/raw/<Benchmark>/<split>.jsonl
+```
+
+This also writes a `data/raw/download_manifest.json` recording each dataset's
+name, source repository, and local path. Conversation-length buckets are then
+derived per benchmark: **LongBench** and **LongMemEval** use total input-token
+count, whereas **LoCoMo** uses session and turn counts
+(see [`data/length_buckets.py`](src/llm_memory_eval/data/length_buckets.py)).
+
+> The licences listed above are the upstream values recorded in
+> [`data/download.py`](src/llm_memory_eval/data/download.py). Dataset licences
+> can change, so confirm the current terms on each Hugging Face dataset page
+> before redistribution or derivative use.
+
 ## Documentation
 
 | Document                                | Purpose                                        |
